@@ -1,14 +1,18 @@
-import { BrowswerRouter as Router,Route, Routes, Link } from 'react-router-dom'
-import WeeklySchedule from './components/WeeklySchedule'
-import GameDetails from './components/GameDetails'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
+import WeeklySchedule from "./components/WeeklySchedule";
+import GameDetails from "./components/GameDetails";
 
 function App() {
-
   return (
-    <div className='App'>
-      <WeeklySchedule />
-    </div>
-  )
+    <Router>
+      <Routes>
+        <Route exact path="/" Component={HomePage} />
+        <Route path="/games/*" Component={WeeklySchedule} />
+        <Route path="/game/:gameId/*" Component={GameDetails} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
