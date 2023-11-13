@@ -33,7 +33,7 @@ const WeeklySchedule = () => {
   }
 
   return (
-    <div>
+    <div className="dark:bg-gray-800 dark:text-white">
       <h1 className="text-4xl font-bold mb-4">StickTap</h1>
       {gameWeek.map((day) => (
         <div key={day.date} className="mb-8">
@@ -45,7 +45,7 @@ const WeeklySchedule = () => {
               <Link key={game.id} to={`/game/${game.id}`}>
                 <div
                   key={game.id}
-                  className="bg-white p-4 rounded-lg shadow-md"
+                  className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md"
                 >
                   <div className="flex justify-between items-center mb-2">
                     <div className="flex items-center">

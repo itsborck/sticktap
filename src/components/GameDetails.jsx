@@ -32,7 +32,7 @@ const GameDetails = () => {
   }
 
   return (
-    <div>
+    <div className="dark:bg-gray-800 dark:text-white">
       <h2 className="text-2xl font-bold mb-2">
         {game.awayTeam.name.default} vs {game.homeTeam.name.default}
       </h2>
