@@ -1,8 +1,33 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# StickTap - In-Development
 
-Currently, two official plugins are available:
+StickTap is a web application designed for hockey enthusiasts to stay updated with the latest NHL information, including game schedules, team standings, player stats, and more. Please note that StickTap is currently in development, and new features will be added over time.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+
+![Downloads](https://img.shields.io/github/downloads/itsborck/sticktap/total)
+
+![Contributors](https://img.shields.io/github/contributors/itsborck/sticktap?color=dark-green)
+
+![Issues](https://img.shields.io/github/issues/itsborck/sticktap)
+
+![License](https://img.shields.io/github/license/itsborck/sticktap)
+
+
+## Features
+
+- View today's NHL game schedule.
+- Access detailed game information, including teams, scores, and TV broadcasts.
+- Retrieve team standings for the current season.
+- Explore team-specific and player-specific statistics.
+
+
+## Built With
+
+- [Vite](https://vitejs.dev/)
+- [React](https://react.dev/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [NHL API](https://gitlab.com/dword4/nhlapi/-/blob/master/new-api.md)
+## License
+
+[MPL-2.0](https://choosealicense.com/licenses/mpl-2.0/)
+
