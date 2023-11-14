@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
+import { useEffect, useState } from "react";
 import Navbar from "../Navbar";
 
 const Standings = () => {
@@ -8,10 +8,12 @@ const Standings = () => {
   useEffect(() => {
     const fetchStandings = async () => {
       try {
-        const response = await axios.get('https://api-web.nhle.com/v1/standings/now');
+        const response = await axios.get(
+          "https://api-web.nhle.com/v1/standings/now"
+        );
         setStandings(response.data.standings);
       } catch (error) {
-        console.error('Error fetching standings:', error);
+        console.error("Error fetching standings:", error);
       }
     };
 
@@ -68,7 +70,7 @@ const Standings = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div>
         <h1>Standings</h1>
         {Object.entries(groupByDivision()).map(([divisionName, teams]) =>

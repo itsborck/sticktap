@@ -1,5 +1,4 @@
 const Info = ({ game, convertUTCToLocalTime }) => {
-
   return (
     <div className="bg-gray-100 dark:bg-gray-800 p-4 rounded-lg shadow-md">
       <p className="text-sm">Venue: {game.venue.default}</p>
@@ -11,14 +10,14 @@ const Info = ({ game, convertUTCToLocalTime }) => {
           </p>
           <p className="text-sm">Period: {game.periodDescriptor.number}</p>
         </div>
-      ) : game.gameState === "OFF" ? (
+      ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
         <p className="text-sm">
           Final Score: {game.awayTeam.score} - {game.homeTeam.score}
         </p>
       ) : (
         <p className="text-sm">
-        Start Time: {convertUTCToLocalTime(game.startTimeUTC)}
-      </p>
+          Start Time: {convertUTCToLocalTime(game.startTimeUTC)}
+        </p>
       )}
     </div>
   );

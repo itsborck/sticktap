@@ -14,7 +14,9 @@ const GameCalendar = ({ selectedDay, onSelectDay }) => {
       {reorderedDaysOfWeek.map((day) => (
         <button
           key={day}
-          className={`p-2 border ${selectedDay === day ? "border-blue-500" : ""}`}
+          className={`p-2 border ${
+            selectedDay === day ? "border-blue-500" : ""
+          }`}
           onClick={() => onSelectDay(day)}
         >
           {day}

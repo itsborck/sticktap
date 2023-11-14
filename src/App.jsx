@@ -3,8 +3,8 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import DarkModeToggle from "./components/DarkModeToggle";
 import GameDetails from "./components/GameDetails";
 import HomePage from "./components/HomePage";
-import WeeklySchedule from "./components/WeeklySchedule";
 import Standings from "./components/Standings";
+import WeeklySchedule from "./components/WeeklySchedule";
 import "./index.css";
 
 function App() {

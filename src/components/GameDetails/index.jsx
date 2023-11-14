@@ -4,12 +4,12 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate, useParams } from "react-router-dom";
+import Navbar from "../Navbar";
 import Banner from "./GameDetailsBanner";
-import Header from "./GameDetailsHeader";
+import Header from "./GameDetailsBoxscore";
 import Info from "./GameDetailsInfo";
 import Radio from "./GameDetailsRadio";
 import Teams from "./GameDetailsTeams";
-import Navbar from "../Navbar";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
@@ -47,7 +47,7 @@ const GameDetailsContainer = () => {
   }, [gameId]);
 
   useEffect(() => {
-    document.title = `${gamecenter?.awayTeam.abbrev} vs. ${gamecenter?.homeTeam.abbrev} | StickTap`
+    document.title = `${gamecenter?.awayTeam.abbrev} vs. ${gamecenter?.homeTeam.abbrev} | StickTap`;
   });
 
   function convertUTCToLocalTime(utcTime) {
@@ -57,7 +57,7 @@ const GameDetailsContainer = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
         <button
           onClick={() => navigate(-1)}
@@ -68,7 +68,10 @@ const GameDetailsContainer = () => {
         {gamecenter && (
           <div>
             <Banner game={gamecenter} />
-            <Header game={gamecenter} />
+            <Header
+              game={gamecenter}
+              convertUTCToLocalTime={convertUTCToLocalTime}
+            />
             <Info
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}

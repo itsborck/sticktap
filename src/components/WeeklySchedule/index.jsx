@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import GameCalendar from "./ScheduleCalendar";
 import GameDetails from "../GameDetails";
 import Navbar from "../Navbar";
+import GameCalendar from "./ScheduleCalendar";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
@@ -50,7 +50,7 @@ const WeeklySchedule = () => {
 
   return (
     <>
-    <Navbar />
+      <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
         <GameCalendar
           daysOfWeek={gameWeek.map((day) => day.dayAbbrev)}
@@ -99,13 +99,15 @@ const WeeklySchedule = () => {
                         <div>
                           <p>Period {game.periodDescriptor.number}</p>
                         </div>
-                      ) : game.gameState === "FINAL" || "FUT" ? (
-                        <p>
-                          Final
-                        </p>
+                      ) : game.gameState === "FINAL" ||
+                        game.gameState === "OFF" ? (
+                        <p>Final</p>
                       ) : (
                         <div>
-                          <p>Start Time: {convertUTCToLocalTime(game.startTimeUTC)}</p>
+                          <p>
+                            Start Time:{" "}
+                            {convertUTCToLocalTime(game.startTimeUTC)}
+                          </p>
                           <p>Venue: {game.venue.default}</p>
                         </div>
                       )}

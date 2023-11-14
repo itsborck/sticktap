@@ -25,12 +25,15 @@ const Banner = ({ game }) => {
           />
         </div>
         <div className="text-sm text-center">
-          {game.clock.inIntermission === true ? (
-            <p className="text-sm">End of Period {game.period}</p>
+          {game.gameState === "LIVE" ? (
+            <div>
+              <p>Period {game.periodDescriptor.number}</p>
+            </div>
+          ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
+            <p>Final</p>
           ) : (
-            <p className="text-sm">
-              {game.clock.timeRemaining} - Period {game.period}
-            </p>
+            game.clock.inIntermission ===
+            true(<p>End of Period {game.period}</p>)
           )}
         </div>
       </div>
