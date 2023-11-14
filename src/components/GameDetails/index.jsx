@@ -8,7 +8,6 @@ import Navbar from "../Navbar";
 import Banner from "./Banner";
 import Header from "./Boxscore";
 import Info from "./Info";
-import Radio from "./Radio";
 import Scoring from "./ScoringSummary";
 import Teams from "./Teams";
 
@@ -61,7 +60,7 @@ const GameDetailsContainer = () => {
       <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
         <button
-          onClick={() => navigate(-1)}
+          onClick={() => navigate('/games')}
           className="mt-4 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 px-4 py-2 rounded"
         >
           Back
@@ -90,10 +89,9 @@ const GameDetailsContainer = () => {
                   <FontAwesomeIcon icon={faX} />
                 </button>
               </div>
-              <Radio game={gamecenter} />
             </Modal>
             <Scoring gameId={gameId} />
-            <Teams game={gamecenter} />
+            <Teams gameId={gameId} />
           </div>
         )}
       </div>

@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import GameDetails from "./components/GameDetails";
 import HomePage from "./components/HomePage";
 import Standings from "./components/Standings";
-import WeeklySchedule from "./components/WeeklySchedule";
+import WeeklySchedule from "./components/Schedule";
 import "./index.css";
 
 function App() {

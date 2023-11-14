@@ -1,27 +1,26 @@
-const GameDetailsTeams = ({ game }) => {
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const Teams = ({ gameId }) => {
+  const [stats, setStats] = useState([]);
+
+  useEffect(() => {
+    const fetchStats = async () => {
+      try {
+        const response = await axios.get(`https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`);
+        setStats(response.data);
+      } catch (error) {
+        console.error('Error fetching goals:', error);
+      }
+    };
+    fetchStats();
+  });
+
   return (
     <div>
-      <h3>Teams:</h3>
-      <div className="flex">
-        <div>
-          <h4>{game.awayTeam.abbrev}</h4>
-          <img
-            src={game.awayTeam.logo}
-            alt={game.awayTeam.name.default}
-            className="w-8 h-8"
-          />
-        </div>
-        <div>
-          <h4>{game.homeTeam.abbrev}</h4>
-          <img
-            src={game.homeTeam.logo}
-            alt={game.homeTeam.name.default}
-            className="w-8 h-8"
-          />
-        </div>
-      </div>
+
     </div>
   );
 };
 
-export default GameDetailsTeams;
+export default Teams;

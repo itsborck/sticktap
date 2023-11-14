@@ -71,7 +71,7 @@ const Standings = () => {
   return (
     <>
       <Navbar />
-      <div>
+      <div className="dark:bg-gray-800 dark:text-white"> 
         <h1>Standings</h1>
         {Object.entries(groupByDivision()).map(([divisionName, teams]) =>
           renderDivisionTable(divisionName, teams)
