@@ -16,7 +16,7 @@ const WeeklySchedule = () => {
           "https://api-web.nhle.com/v1/schedule/now"
         );
         setGameWeek(response.data.gameWeek);
-        setSelectedDay(response.data.gameWeek[0]?.dayAbbrev);
+        // setSelectedDay(response.data.gameWeek[0]?.dayAbbrev);
       } catch (error) {
         console.error("Error fetching schedule: ", error);
       }
@@ -53,7 +53,7 @@ const WeeklySchedule = () => {
       <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
         <GameCalendar
-          daysOfWeek={gameWeek.map((day) => day.dayAbbrev)}
+          daysOfWeek={gameWeek.map((date) => date.dayAbbrev)}
           selectedDay={selectedDay}
           onSelectDay={handleSelectDay}
         />
@@ -102,6 +102,10 @@ const WeeklySchedule = () => {
                       ) : game.gameState === "FINAL" ||
                         game.gameState === "OFF" ? (
                         <p>Final</p>
+                      ) : game.period === 4 && game.gameState === "FINAL" || game.period === 4 && game.gameState === "OFF" ? (
+                        <p>Final/OT</p>
+                      ) : game.period === 5 && game.gameState === "FINAL" ||game.period === 5 && game.gameState === "OFF" ? (
+                        <p>Final/SO</p>
                       ) : (
                         <div>
                           <p>

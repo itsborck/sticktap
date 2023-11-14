@@ -5,11 +5,12 @@ import { useEffect, useState } from "react";
 import Modal from "react-modal";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Navbar";
-import Banner from "./GameDetailsBanner";
-import Header from "./GameDetailsBoxscore";
-import Info from "./GameDetailsInfo";
-import Radio from "./GameDetailsRadio";
-import Teams from "./GameDetailsTeams";
+import Banner from "./Banner";
+import Header from "./Boxscore";
+import Info from "./Info";
+import Radio from "./Radio";
+import Teams from "./Teams";
+import Scoring from "./ScoringSummary";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
