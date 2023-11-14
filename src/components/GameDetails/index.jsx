@@ -9,8 +9,8 @@ import Banner from "./Banner";
 import Header from "./Boxscore";
 import Info from "./Info";
 import Radio from "./Radio";
-import Teams from "./Teams";
 import Scoring from "./ScoringSummary";
+import Teams from "./Teams";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
@@ -92,6 +92,7 @@ const GameDetailsContainer = () => {
               </div>
               <Radio game={gamecenter} />
             </Modal>
+            <Scoring gameId={gameId} />
             <Teams game={gamecenter} />
           </div>
         )}

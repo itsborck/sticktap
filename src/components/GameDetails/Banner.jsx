@@ -37,10 +37,10 @@ const Banner = ({ game }) => {
             <p>Final/OT</p>
           ) : (game.period === 5 && game.gameState === "FINAL") ||
             (game.period === 5 && game.gameState === "OFF") ? (
-            (<p>Final/SO</p>)
+            <p>Final/SO</p>
           ) : (
             game.clock.inIntermission ===
-            true (<p>End of Period {game.period}</p>)
+            true(<p>End of Period {game.period}</p>)
           )}
         </div>
       </div>
