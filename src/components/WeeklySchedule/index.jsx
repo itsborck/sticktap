@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, Route, Routes } from "react-router-dom";
-import GameCalendar from "./GameCalendar";
-import GameDetails from "./GameDetails";
+import GameCalendar from "../GameCalendar";
+import GameDetails from "../GameDetails";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
