@@ -1,6 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import DarkModeToggle from "./components/DarkModeToggle";
 import GameDetails from "./components/GameDetails";
 import HomePage from "./components/HomePage";
 import Standings from "./components/Standings";
@@ -8,16 +7,24 @@ import WeeklySchedule from "./components/WeeklySchedule";
 import "./index.css";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [isDarkMode, setDarkMode] = useState(() => {
+    const storedMode = JSON.parse(localStorage.getItem("darkMode"));
+    return storedMode ? JSON.parse(storedMode) : true;
+  });
+
+  useEffect(() => {
+    localStorage.setItem("darkMode", JSON.stringify(isDarkMode));
+  }, [isDarkMode]);
 
   const toggleDarkMode = () => {
-    document.documentElement.classList.toggle("dark", !darkMode);
-    setDarkMode(!darkMode);
+    setDarkMode((prevMode) => !prevMode);
   };
 
   return (
-    <div className={`h-screen ${darkMode ? "dark" : ""}`}>
-      <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+    <div className={isDarkMode ? 'dark' : 'light'}>
+      <button onClick={toggleDarkMode} className="fixed bottom-4 right-4 p-4 rounded-full shadow-md bg-blue-800 text-white">
+        {isDarkMode ? '🌙' : '☀️'}
+      </button>
       <Router>
         <Routes>
           <Route exact path="/" Component={HomePage} />
