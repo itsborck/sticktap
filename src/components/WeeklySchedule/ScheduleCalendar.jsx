@@ -1,4 +1,4 @@
-const GameCalendar = ({ daysOfWeek, selectedDay, onSelectDay }) => {
+const GameCalendar = ({ selectedDay, onSelectDay }) => {
   const reorderedDaysOfWeek = [
     "Sunday",
     "Monday",

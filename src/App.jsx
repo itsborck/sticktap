@@ -4,6 +4,7 @@ import DarkModeToggle from "./components/DarkModeToggle";
 import GameDetails from "./components/GameDetails";
 import HomePage from "./components/HomePage";
 import WeeklySchedule from "./components/WeeklySchedule";
+import Standings from "./components/Standings";
 import "./index.css";
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Routes>
           <Route exact path="/" Component={HomePage} />
           <Route path="/games/*" Component={WeeklySchedule} />
+          <Route path="/standings/*" Component={Standings} />
           <Route path="/game/:gameId/*" Component={GameDetails} />
         </Routes>
       </Router>

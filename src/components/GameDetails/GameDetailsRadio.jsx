@@ -1,4 +1,4 @@
-const GameDetailsRadio = ({ game, details }) => {
+const GameDetailsRadio = ({ game }) => {
   return (
     <div>
       <h3>Broadcasts:</h3>

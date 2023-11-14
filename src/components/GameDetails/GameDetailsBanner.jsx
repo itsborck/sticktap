@@ -1,8 +1,8 @@
-const Banner = ({ game, details }) => {
+const Banner = ({ game }) => {
   return (
     <div className="bg-gray-900 py-8 text-white mb-8 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-0" />
-      <div className="relative z-10 flex flex-col items-center container mx-auto">
+      <div className="relative flex flex-col items-center container mx-auto">
         <div className="flex items-center mb-4">
           <img
             src={game.awayTeam.logo}
@@ -12,7 +12,7 @@ const Banner = ({ game, details }) => {
           <p className="text-2xl font-bold mr-8">
             {game.awayTeam.name.default}
           </p>
-          <p className="text-4xl font-bold mx-8">
+          <p className="text-4xl text-center font-bold mx-8">
             {game.awayTeam.score} - {game.homeTeam.score}
           </p>
           <p className="text-2xl font-bold ml-8">
@@ -25,7 +25,13 @@ const Banner = ({ game, details }) => {
           />
         </div>
         <div className="text-sm text-center">
-          <p>{game.clock.timeRemaining}</p>
+          {game.clock.inIntermission === true ? (
+            <p className="text-sm">End of Period {game.period}</p>
+          ) : (
+            <p className="text-sm">
+              {game.clock.timeRemaining} - Period {game.period}
+            </p>
+          )}
         </div>
       </div>
     </div>
