@@ -1,4 +1,8 @@
 const Header = ({ game }) => {
+  if (!game.boxscore) {
+    return null;
+  }
+
   return (
     <div>
       <h2 className="text-lg font-bold mb-2">Boxscore</h2>

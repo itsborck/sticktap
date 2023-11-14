@@ -16,6 +16,10 @@ const Scoring = ({ gameId }) => {
     fetchGoals();
   }, [gameId]);
 
+  if (!goals) {
+    return <p>No goal information available for this game.</p>;
+  }
+
   return (
     <div className="max-w-lg mx-auto mt-4 p-4 rounded-lg shadow-md">
       {goals.map((period, index) => (
