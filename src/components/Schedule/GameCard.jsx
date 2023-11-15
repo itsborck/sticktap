@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 
 const GameCard = ({ game }) => {
-
   function convertUTCToLocalTime(utcTime) {
     const date = new Date(utcTime);
     return date.toLocaleTimeString([], { hour: "numeric", minute: "numeric" });
@@ -14,27 +13,43 @@ const GameCard = ({ game }) => {
       >
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center">
-            <img
-              src={game.awayTeam.logo}
-              alt={game.awayTeam.placeName.default}
-              className="w-8 h-8 mr-2"
-            />
-            <span className="font-bold">{game.awayTeam.placeName.default}</span>
+            {game.specialEvent ? (
+              <span className="font-bold">{game.awayTeam.placeName.default}</span>
+            ) : (
+              <>
+                <span className="font-bold">{game.awayTeam.placeName.default}</span>
+                <img
+                  src={game.awayTeam.logo}
+                  alt={game.awayTeam.placeName.default}
+                  className="w-16 h-16 mr-2"
+                />
+              </>
+            )}
           </div>
           <span className="text-xl text-center font-bold">
             {game.gameState === "FUT" ? (
-              <span>@</span>
-            ) : game.gameState === "LIVE" (
+              game.specialEvent ? (
+                <img src={game.specialEventLogo} />
+              ) : (
+                <span>@</span>
+              )
+            ) : game.gameState === "LIVE" ? (
               <span>{game.awayTeam.score} - {game.homeTeam.score}</span>
-            )}
+            ) : null}
           </span>
           <div className="flex items-center">
-            <span className="font-bold">{game.homeTeam.placeName.default}</span>
-            <img
-              src={game.homeTeam.logo}
-              alt={game.homeTeam.placeName.default}
-              className="w-8 h-8 ml-2"
-            />
+            {game.specialEvent ? (
+              <span className="font-bold">{game.homeTeam.placeName.default}</span>
+            ) : (
+              <>
+                <img
+                  src={game.homeTeam.logo}
+                  alt={game.homeTeam.placeName.default}
+                  className="w-16 h-16 mr-2"
+                />
+                <span className="font-bold">{game.homeTeam.placeName.default}</span>
+              </>
+            )}
           </div>
         </div>
         <div className="text-sm text-center">

@@ -42,7 +42,7 @@ const GameDetailsContainer = () => {
       <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
         <button
-          onClick={() => navigate("/games")}
+          onClick={() => navigate("/schedule")}
           className="mt-4 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 px-4 py-2 rounded"
         >
           Back

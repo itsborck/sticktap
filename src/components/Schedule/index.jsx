@@ -3,9 +3,8 @@ import axios from "axios";
 import { Routes, Route } from "react-router-dom";
 import GameDetails from "../GameDetails";
 import Navbar from "../Navbar";
-import GameCalendar from "./ScheduleCalendar";
+import GameCalendar from "./Calendar";
 import ScheduleDay from "./ScheduleDay";
-import { APIBaseURL, endpoints } from "../../config.json";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
@@ -18,9 +17,8 @@ const WeeklySchedule = () => {
   useEffect(() => {
     const fetchSchedule = async () => {
       try {
-        const response = await axios.get(APIBaseURL + endpoints.schedule);
+        const response = await axios.get('https://api-web.nhle.com/v1/schedule/now');
         setGameWeek(response.data.gameWeek);
-        console.log(response)
       } catch (error) {
         console.error("Error fetching schedule: ", error);
       }
