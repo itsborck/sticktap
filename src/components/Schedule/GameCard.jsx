@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-import { gameState } from '../../config.json';
 
 const GameCard = ({ game }) => {
 
@@ -11,7 +10,6 @@ const GameCard = ({ game }) => {
   return (
     <Link to={`/game/${game.id}`}>
       <div
-        key={game.id}
         className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-gray-600 transiton duration-300"
       >
         <div className="flex justify-between items-center mb-2">
@@ -36,18 +34,10 @@ const GameCard = ({ game }) => {
           </div>
         </div>
         <div className="text-sm text-center">
-          {game.gameState === gameState.live ? (
-            <div>
-              <p>Period {game.periodDescriptor.number}</p>
-            </div>
-          ) : game.gameState === gameState.hardFinal || game.gameState === gameState.official ? (
-            <p>Final</p>
-          ) : (game.period === 4 && game.gameState === gameState.hardFinal) ||
-            (game.period === 4 && game.gameState === gameState.official) ? (
-            <p>Final/OT</p>
-          ) : (game.period === 5 && game.gameState === gameState.hardFinal) ||
-            (game.period === 5 && game.gameState === gameState.official) ? (
-            <p>Final/SO</p>
+        {game.gameState === "LIVE" ? (
+            <p>Period {game.periodDescriptor.number}</p>
+          ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
+            <p>{game.gameOutcome.lastPeriodType === "OT" ? "Final/OT" : game.gameOutcome.lastPeriodType === "SO" ? "Final/SO" : "Final"}</p>
           ) : (
             <div>
               <p>Start Time: {convertUTCToLocalTime(game.startTimeUTC)}</p>

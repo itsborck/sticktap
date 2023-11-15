@@ -5,7 +5,7 @@ import GameDetails from "../GameDetails";
 import Navbar from "../Navbar";
 import GameCalendar from "./ScheduleCalendar";
 import ScheduleDay from "./ScheduleDay";
-import { APIBaseURL, endpoints, gameState } from "../../config.json";
+import { APIBaseURL, endpoints } from "../../config.json";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
@@ -20,6 +20,7 @@ const WeeklySchedule = () => {
       try {
         const response = await axios.get(APIBaseURL + endpoints.schedule);
         setGameWeek(response.data.gameWeek);
+        console.log(response)
       } catch (error) {
         console.error("Error fetching schedule: ", error);
       }
