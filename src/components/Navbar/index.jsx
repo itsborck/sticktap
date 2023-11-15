@@ -12,7 +12,7 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="space-x-4">
-          <Link to="/games" className="text-white">
+          <Link to="/schedule" className="text-white">
             Schedule
           </Link>
           <Link to="/standings" className="text-white">

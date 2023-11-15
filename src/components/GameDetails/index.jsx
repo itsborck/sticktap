@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import Banner from "./Banner";
-import Header from "./Boxscore";
+import Boxscore from "./Boxscore";
 import Info from "./Info";
 import Scoring from "./ScoringSummary";
-import Teams from "./Teams";
+import ThreeStars from "./ThreeStars";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
@@ -42,7 +42,7 @@ const GameDetailsContainer = () => {
       <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
         <button
-          onClick={() => navigate('/games')}
+          onClick={() => navigate("/games")}
           className="mt-4 bg-gray-300 dark:bg-gray-700 hover:bg-gray-400 dark:hover:bg-gray-600 px-4 py-2 rounded"
         >
           Back
@@ -50,7 +50,7 @@ const GameDetailsContainer = () => {
         {gamecenter && (
           <div>
             <Banner game={gamecenter} />
-            <Header
+            <Boxscore
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}
             />
@@ -58,8 +58,14 @@ const GameDetailsContainer = () => {
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}
             />
-            <Scoring gameId={gameId} />
-            <Teams gameId={gameId} />
+            <div className="flex justify-between">
+              <div className="w-1/2">
+                <Scoring gameId={gameId} />
+              </div>
+              <div className="w-1/2">
+                <ThreeStars gameId={gameId} />
+              </div>
+            </div>
           </div>
         )}
       </div>

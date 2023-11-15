@@ -19,13 +19,17 @@ const GameCard = ({ game }) => {
               alt={game.awayTeam.placeName.default}
               className="w-8 h-8 mr-2"
             />
-            <span className="font-bold">{game.awayTeam.placeName.default} ({game.awayTeam.abbrev})</span>
+            <span className="font-bold">{game.awayTeam.placeName.default}</span>
           </div>
           <span className="text-xl text-center font-bold">
-            {game.awayTeam.score} - {game.homeTeam.score}
+            {game.gameState === "FUT" ? (
+              <span>@</span>
+            ) : game.gameState === "LIVE" (
+              <span>{game.awayTeam.score} - {game.homeTeam.score}</span>
+            )}
           </span>
           <div className="flex items-center">
-            <span className="font-bold">{game.homeTeam.placeName.default} ({game.homeTeam.abbrev})</span>
+            <span className="font-bold">{game.homeTeam.placeName.default}</span>
             <img
               src={game.homeTeam.logo}
               alt={game.homeTeam.placeName.default}

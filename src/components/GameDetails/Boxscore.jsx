@@ -1,4 +1,4 @@
-const Header = ({ game }) => {
+const Boxscore = ({ game }) => {
   if (!game.boxscore) {
     return null;
   }
@@ -57,4 +57,4 @@ const Header = ({ game }) => {
   );
 };
 
-export default Header;
+export default Boxscore;

@@ -28,7 +28,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" Component={HomePage} />
-          <Route path="/games/*" Component={WeeklySchedule} />
+          <Route path="/schedule/*" Component={WeeklySchedule} />
           <Route path="/standings/*" Component={Standings} />
           <Route path="/game/:gameId/*" Component={GameDetails} />
         </Routes>

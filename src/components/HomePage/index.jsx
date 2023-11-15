@@ -17,7 +17,7 @@ const HomePage = () => {
           and enjoy listening to live radio broadcasts.
         </p>
         <Link
-          to="/games"
+          to="/schedule"
           className="text-white bg-blue-500 dark:bg-gray-700 py-2 px-4 rounded inline-block hover:bg-blue-600 dark:hover:bg-gray-600 transition duration-300"
         >
           Tap In!

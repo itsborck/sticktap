@@ -7,12 +7,15 @@ const Scoring = ({ gameId }) => {
   useEffect(() => {
     const fetchGoals = async () => {
       try {
-        const response = await axios.get(`https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`);
+        const response = await axios.get(
+          `https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
+        );
         setGoals(response.data.summary.scoring);
       } catch (error) {
-        console.error('Error fetching goals:', error);
+        console.error("Error fetching goals:", error);
       }
     };
+
     fetchGoals();
   }, [gameId]);
 
