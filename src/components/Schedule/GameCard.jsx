@@ -13,7 +13,7 @@ const GameCard = ({ game }) => {
       >
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center">
-            {game.specialEvent ? (
+            {game.specialEvent && game.specialEventLogo ? (
               <span className="font-bold">{game.awayTeam.placeName.default}</span>
             ) : (
               <>
@@ -28,17 +28,19 @@ const GameCard = ({ game }) => {
           </div>
           <span className="text-xl text-center font-bold">
             {game.gameState === "FUT" ? (
-              game.specialEvent ? (
+              game.specialEvent && game.specialEventLogo ? (
                 <img src={game.specialEventLogo} />
               ) : (
                 <span>@</span>
               )
             ) : game.gameState === "LIVE" ? (
               <span>{game.awayTeam.score} - {game.homeTeam.score}</span>
+            ) : (game.gameState === "FINAL" || game.gameState === "OFF") ? (
+              <span>{game.awayTeam.score} - {game.homeTeam.score}</span>
             ) : null}
           </span>
           <div className="flex items-center">
-            {game.specialEvent ? (
+            {game.specialEvent && game.specialEventLogo ? (
               <span className="font-bold">{game.homeTeam.placeName.default}</span>
             ) : (
               <>
