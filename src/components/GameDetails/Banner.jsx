@@ -27,7 +27,7 @@ const Banner = ({ game }) => {
         <div className="text-sm text-center">
           {game.gameState === "LIVE" ? (
             <div>
-              <p>Period {game.periodDescriptor.number}</p>
+              <p>Period {game.periodDescriptor.number} - {game.clock.timeRemaining}</p>
             </div>
           ) : (game.period === 3 && game.gameState === "FINAL") ||
             (game.period === 3 && game.gameState === "OFF") ? (

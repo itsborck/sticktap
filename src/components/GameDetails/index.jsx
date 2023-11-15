@@ -1,8 +1,5 @@
-import { faX } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Modal from "react-modal";
 import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import Banner from "./Banner";
@@ -15,21 +12,6 @@ const GameDetailsContainer = () => {
   const { gameId } = useParams();
   const navigate = useNavigate();
   const [gamecenter, setGamecenter] = useState(null);
-  const [isModalOpen, setModalOpen] = useState(false);
-
-  const openModal = () => setModalOpen(true);
-  const closeModal = () => setModalOpen(false);
-
-  const modalStyles = {
-    content: {
-      top: "50%",
-      left: "50%",
-      right: "auto",
-      bottom: "auto",
-      marginRight: "-50%",
-      transform: `translate(-50%, -50%)`,
-    },
-  };
 
   useEffect(() => {
     const fetchGamecenter = async () => {
@@ -47,7 +29,7 @@ const GameDetailsContainer = () => {
   }, [gameId]);
 
   useEffect(() => {
-    document.title = `${gamecenter?.awayTeam.abbrev} vs. ${gamecenter?.homeTeam.abbrev} | StickTap`;
+    document.title = `${gamecenter?.awayTeam.name.default} vs. ${gamecenter?.homeTeam.name.default} | StickTap`;
   });
 
   function convertUTCToLocalTime(utcTime) {
@@ -76,20 +58,6 @@ const GameDetailsContainer = () => {
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}
             />
-            <button onClick={openModal} className="hover:underline">
-              Where to Watch
-            </button>
-            <Modal
-              isOpen={isModalOpen}
-              onRequestClose={closeModal}
-              style={modalStyles}
-            >
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <button onClick={closeModal}>
-                  <FontAwesomeIcon icon={faX} />
-                </button>
-              </div>
-            </Modal>
             <Scoring gameId={gameId} />
             <Teams gameId={gameId} />
           </div>
