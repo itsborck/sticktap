@@ -69,8 +69,8 @@ const Standings = () => {
           {teams.map((team) => (
             <tr key={team.teamAbbrev.default} className="text-lg">
               <td className="py-3 px-6 border-b border-gray-700">{team.divisionSequence}</td>
-              <td className="py-3 px-6 border-b border-gray-700">
-                <img src={team.teamLogo} alt={team.teamName.default} className="h-8 w-8 inline-block mr-2" />
+              <td className="py-3 px-16 border-b border-gray-700">
+                <img src={team.teamLogo} alt={team.teamName.default} className="h-8 w-8 inline-block" />
                 {team.teamAbbrev.default}
               </td>
               <td className="py-3 px-6 border-b border-gray-700">{team.gamesPlayed}</td>
@@ -84,10 +84,10 @@ const Standings = () => {
               <td className="py-3 px-6 border-b border-gray-700">{team.goalFor}</td>
               <td className="py-3 px-6 border-b border-gray-700">{team.goalAgainst}</td>
               <td className="py-3 px-6 border-b border-gray-700">{team.goalDifferential}</td>
-              <td className="py-3 px-6 border-b border-gray-700">{team.homeWins}-{team.homeLosses}-{team.homeOtLosses}</td>
-              <td className="py-3 px-6 border-b border-gray-700">{team.roadWins}-{team.roadLosses}-{team.roadOtLosses}</td>
-              <td className="py-3 px-6 border-b border-gray-700">{team.shootoutWins}-{team.shootoutLosses}</td>
-              <td className="py-3 px-6 border-b border-gray-700">{team.l10Wins}-{team.l10Losses}-{team.l10OtLosses}</td>
+              <td className="py-3 px-4 border-b border-gray-700">{team.homeWins}-{team.homeLosses}-{team.homeOtLosses}</td>
+              <td className="py-3 px-4 border-b border-gray-700">{team.roadWins}-{team.roadLosses}-{team.roadOtLosses}</td>
+              <td className="py-3 px-4 border-b border-gray-700">{team.shootoutWins}-{team.shootoutLosses}</td>
+              <td className="py-3 border-b border-gray-700">{team.l10Wins}-{team.l10Losses}-{team.l10OtLosses}</td>
               <td className="py-3 px-6 border-b border-gray-700">{team.streakCode}{team.streakCount}</td>
               {/* Add more cells as needed */}
             </tr>
