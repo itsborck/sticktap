@@ -8,7 +8,11 @@ import ScheduleDay from "./ScheduleDay";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
-  const [selectedDay, setSelectedDay] = useState("null");
+
+  const today = new Date();
+  const [formattedDate, setFormattedDate] = useState(`${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, '0')}-${String(today.getDate()).padStart(2, '0')}`);
+
+  const gamesToday = gameWeek.filter(day => day.date === formattedDate);
 
   useEffect(() => {
     document.title = 'Schedule | StickTap';
@@ -17,7 +21,7 @@ const WeeklySchedule = () => {
   useEffect(() => {
     const fetchSchedule = async () => {
       try {
-        const response = await axios.get('https://api-web.nhle.com/v1/schedule/now');
+        const response = await axios.get(`https://api-web.nhle.com/v1/schedule/${formattedDate}`);
         setGameWeek(response.data.gameWeek);
       } catch (error) {
         console.error("Error fetching schedule: ", error);
@@ -25,22 +29,14 @@ const WeeklySchedule = () => {
     };
 
     fetchSchedule();
-  }, []);
-
-  const handleSelectDay = (day) => {
-    setSelectedDay(day);
-  };
+  }, [formattedDate]);
 
   return (
     <>
       <Navbar />
       <div className="dark:bg-gray-800 dark:text-white">
-        <GameCalendar
-          daysOfWeek={gameWeek.map((date) => date.dayAbbrev)}
-          selectedDay={selectedDay}
-          onSelectDay={handleSelectDay}
-        />
-        {gameWeek.map((day) => (
+        <GameCalendar formattedDate={formattedDate} setFormattedDate={setFormattedDate} />
+        {gamesToday.map((day) => (
           <ScheduleDay key={day.date} day={day} />
         ))}
         <Routes>

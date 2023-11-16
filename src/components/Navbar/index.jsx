@@ -1,5 +1,5 @@
-import { Link, Route, Routes } from "react-router-dom"; // Assuming you are using React Router for navigation
-import Standings from "../Standings";
+import { Link } from "react-router-dom";
+import { FaUser, FaCalendar, FaTrophy } from "react-icons/fa6";
 
 const Navbar = () => {
   return (
@@ -11,18 +11,18 @@ const Navbar = () => {
         </Link>
 
         {/* Navigation Links */}
-        <div className="space-x-4">
+        <div className="space-x-6 flex items-center">
           <Link to="/schedule" className="text-white">
-            Schedule
+            <FaCalendar /> Schedule
           </Link>
           <Link to="/standings" className="text-white">
-            Standings
+            <FaTrophy /> Standings
           </Link>
+          {/* <Link to="/account" className="text-white">
+            <FaUser />
+          </Link> */}
           {/* Add more links as needed */}
         </div>
-        <Routes>
-          <Route path="/standings/*" element={<Standings />} />
-        </Routes>
       </div>
     </nav>
   );

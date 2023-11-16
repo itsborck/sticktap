@@ -14,7 +14,7 @@ const Banner = ({ game }) => {
               {game.awayTeam.name.default}
             </p>
             <p className="text-xs mr-8">
-              SOG: {game.awayTeam.sog}
+              {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
             </p>
           </div>
           <div className="flex flex-col text-sm text-center">
@@ -36,7 +36,7 @@ const Banner = ({ game }) => {
               {game.homeTeam.name.default}
             </p>
             <p className="text-xs mr-8">
-              SOG: {game.homeTeam.sog}
+              {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
             </p>
           </div>
           <img

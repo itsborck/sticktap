@@ -43,22 +43,34 @@ const Standings = () => {
     <div key={divisionName} className="my-4">
       <h2 className="text-2xl font-bold mb-2">{divisionName}</h2>
       <table className="table-auto w-full">
-        <thead>
+        <thead className="text-center">
           <tr className="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 uppercase text-sm leading-normal">
-            <th className="py-3 px-6 text-left">Team</th>
-            <th className="py-3 px-6 text-left">GP</th>
-            <th className="py-3 px-6 text-left">Wins</th>
-            <th className="py-3 px-6 text-left">Losses</th>
-            <th className="py-3 px-6 text-left">OT Losses</th>
-            <th className="py-3 px-6 text-left">Points</th>
-            {/* Add more columns as needed */}
+            <th className="py-3 px-6 ">Rank</th>
+            <th className="py-3 px-6 ">Team</th>
+            <th className="py-3 px-6 ">GP</th>
+            <th className="py-3 px-6 ">W</th>
+            <th className="py-3 px-6 ">L</th>
+            <th className="py-3 px-6 ">OTL</th>
+            <th className="py-3 px-6 ">PTS</th>
+            <th className="py-3 px-6 ">P%</th>
+            <th className="py-3 px-6 ">RW</th>
+            <th className="py-3 px-6 ">ROW</th>
+            <th className="py-3 px-6 ">GF</th>
+            <th className="py-3 px-6 ">GA</th>
+            <th className="py-3 px-6 ">DIFF</th>
+            <th className="py-3 px-6 ">HOME</th>
+            <th className="py-3 px-6 ">AWAY</th>
+            <th className="py-3 px-6 ">S/O</th>
+            <th className="py-3 px-6 ">L10</th>
+            <th className="py-3 px-6 ">STRK</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="text-center">
           {teams.map((team) => (
             <tr key={team.teamAbbrev.default} className="text-lg">
+              <td className="py-3 px-6 border-b border-gray-700">{team.divisionSequence}</td>
               <td className="py-3 px-6 border-b border-gray-700">
-                <img src={team.teamLogo} alt={team.teamName.default} className="h-6 w-6 inline-block mr-2" />
+                <img src={team.teamLogo} alt={team.teamName.default} className="h-8 w-8 inline-block mr-2" />
                 {team.teamAbbrev.default}
               </td>
               <td className="py-3 px-6 border-b border-gray-700">{team.gamesPlayed}</td>
@@ -66,6 +78,17 @@ const Standings = () => {
               <td className="py-3 px-6 border-b border-gray-700">{team.losses}</td>
               <td className="py-3 px-6 border-b border-gray-700">{team.otLosses}</td>
               <td className="py-3 px-6 border-b border-gray-700">{team.points}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{parseFloat(team.pointPctg).toFixed(3).replace(/^0+/, '')}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.regulationWins}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.regulationPlusOtWins}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.goalFor}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.goalAgainst}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.goalDifferential}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.homeWins}-{team.homeLosses}-{team.homeOtLosses}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.roadWins}-{team.roadLosses}-{team.roadOtLosses}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.shootoutWins}-{team.shootoutLosses}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.l10Wins}-{team.l10Losses}-{team.l10OtLosses}</td>
+              <td className="py-3 px-6 border-b border-gray-700">{team.streakCode}{team.streakCount}</td>
               {/* Add more cells as needed */}
             </tr>
           ))}

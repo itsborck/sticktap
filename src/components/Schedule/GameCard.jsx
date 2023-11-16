@@ -14,10 +14,10 @@ const GameCard = ({ game }) => {
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center">
             {game.specialEvent && game.specialEventLogo ? (
-              <span className="mb-5 font-bold">{game.awayTeam.placeName.default}</span>
+              <span className="mb-5 font-bold">{game.awayTeam.abbrev}</span>
             ) : (
               <>
-                <span className="mb-5 font-bold">{game.awayTeam.placeName.default}</span>
+                <span className="mb-5 font-bold">{game.awayTeam.abbrev}</span>
                 <img
                   src={game.awayTeam.logo}
                   alt={game.awayTeam.placeName.default}
@@ -33,9 +33,7 @@ const GameCard = ({ game }) => {
               ) : (
                 <span className="font-bold">@</span>
               )
-            ) : game.gameState === "LIVE" || game.gameState === "CRIT" ? (
-              <span className="font-bold">{game.awayTeam.score} - {game.homeTeam.score}</span>
-            ) : (game.gameState === "FINAL" || game.gameState === "OFF") ? (
+            ) : game.gameState === "LIVE" || game.gameState === "CRIT" || game.gameState === "FINAL" || game.gameState === "OFF" ? (
               <span className="font-bold">{game.awayTeam.score} - {game.homeTeam.score}</span>
             ) : null}
             <div className="text-sm text-center">
@@ -53,7 +51,7 @@ const GameCard = ({ game }) => {
           </span>
           <div className="flex items-center">
             {game.specialEvent && game.specialEventLogo ? (
-              <span className="mb-5 font-bold">{game.homeTeam.placeName.default}</span>
+              <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
             ) : (
               <>
                 <img
@@ -61,7 +59,7 @@ const GameCard = ({ game }) => {
                   alt={game.homeTeam.placeName.default}
                   className="w-16 h-16 mr-2 mb-5"
                 />
-                <span className=" mb-5 font-bold">{game.homeTeam.placeName.default}</span>
+                <span className=" mb-5 font-bold">{game.homeTeam.abbrev}</span>
               </>
             )}
           </div>
