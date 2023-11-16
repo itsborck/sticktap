@@ -28,9 +28,9 @@ const GameCalendar = ({ formattedDate, setFormattedDate }) => {
 
   return (
     <div className="flex justify-between">
-      <button onClick={previousDay} className="ml-32">Prev</button>
-      {isLoading ? <span>Loading...</span> : <span className="text-2xl mt-10 mb-10">{displayDate}</span>}
-      <button onClick={nextDay} className="mr-32">Next</button>
+      <button onClick={previousDay} className="lg:ml-32 md:ml-16 sm:ml-8">Prev</button>
+      {isLoading ? <span>Loading...</span> : <span className="text-xl my-10 overflow-hidden whitespace-nowrap text-ellipsis" >{displayDate}</span>}
+      <button onClick={nextDay} className="lg:mr-32 md:mr-16 sm:mr-8">Next</button>
     </div>
   );
 };

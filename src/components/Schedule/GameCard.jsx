@@ -13,7 +13,16 @@ const GameCard = ({ game }) => {
       >
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center">
-            {game.specialEvent && game.specialEventLogo ? (
+            {game.gameState === "LIVE" && game.specialEventLogo ? (
+              <>
+                <span className="mb-5 font-bold">{game.awayTeam.abbrev}</span>
+                <img
+                  src={game.awayTeam.logo}
+                  alt={game.awayTeam.placeName.default}
+                  className="w-16 h-16 mr-2 mb-5"
+                />
+              </>
+            ) : game.specialEvent && game.specialEventLogo ? (
               <span className="mb-5 font-bold">{game.awayTeam.abbrev}</span>
             ) : (
               <>
@@ -50,7 +59,16 @@ const GameCard = ({ game }) => {
             </div>
           </span>
           <div className="flex items-center">
-            {game.specialEvent && game.specialEventLogo ? (
+            {game.gameState === "LIVE" && game.specialEventLogo ? (
+              <>
+                <img
+                  src={game.homeTeam.logo}
+                  alt={game.homeTeam.placeName.default}
+                  className="w-16 h-16 mr-2 mb-5"
+                />
+                <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
+              </>
+            ) : game.specialEvent && game.specialEventLogo ? (
               <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
             ) : (
               <>
@@ -59,7 +77,7 @@ const GameCard = ({ game }) => {
                   alt={game.homeTeam.placeName.default}
                   className="w-16 h-16 mr-2 mb-5"
                 />
-                <span className=" mb-5 font-bold">{game.homeTeam.abbrev}</span>
+                <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
               </>
             )}
           </div>

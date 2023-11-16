@@ -34,7 +34,7 @@ const WeeklySchedule = () => {
   return (
     <>
       <Navbar />
-      <div className="dark:bg-gray-800 dark:text-white">
+      <div className="dark:bg-gray-800 dark:text-white px-5" style={{}}>
         <GameCalendar formattedDate={formattedDate} setFormattedDate={setFormattedDate} />
         {gamesToday.map((day) => (
           <ScheduleDay key={day.date} day={day} />
