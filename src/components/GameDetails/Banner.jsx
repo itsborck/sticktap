@@ -21,15 +21,23 @@ const Banner = ({ game }) => {
             <p className="text-4xl text-center font-bold mx-8">
                 {game.awayTeam.score} - {game.homeTeam.score}
               </p>
-            {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
+              {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
                 <div>
-                  <p>Period {game.periodDescriptor.number} - {game.clock.timeRemaining}</p>
+                  {game.clock.inIntermission === true ? (
+                    game.period === 1 ? (
+                      <p>1st Intermission - {game.clock.timeRemaining}</p>
+                    ) : game.period === 2 ? (
+                      <p>2nd Intermission - {game.clock.timeRemaining}</p>
+                    ) : game.period === 3 ? (
+                      <p>3rd Intermission - {game.clock.timeRemaining}</p>
+                    ) : null
+                  ) : (
+                    <p>Period {game.period} - {game.clock.timeRemaining}</p>
+                  )}
                 </div>
               ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
                 <p>{game.gameOutcome.lastPeriodType === "OT" ? "Final/OT" : game.gameOutcome.lastPeriodType === "SO" ? "Final/SO" : "Final"}</p>
-              ) : game.clock.inIntermission === true ? (
-                <p>End of Period {game.period}</p>
-              ) : null}
+              ) :  null}
             </div>
           <div className="flex flex-col items-center">
             <p className="text-2xl font-bold mr-8">
