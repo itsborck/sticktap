@@ -20,7 +20,7 @@ const Scoring = ({ gameId }) => {
   }, [gameId]);
 
   if (!goals) {
-    return <p>No goal information available for this game.</p>;
+    return null;
   }
 
   return (
@@ -32,6 +32,7 @@ const Scoring = ({ gameId }) => {
             <div className="grid grid-cols-1 gap-4">
               {period.goals.map((goal, goalIndex) => (
                 <div key={goalIndex} className="border-b pb-2">
+                  <img className='w-1/4' src={goal.headshot}/>
                   <p className="text-sm font-medium">
                     <strong>{goal.firstName} {goal.lastName}</strong> ({goal.teamAbbrev})
                   </p>
@@ -39,7 +40,7 @@ const Scoring = ({ gameId }) => {
                   <p className="text-xs">Shot Type: {goal.shotType}</p>
                   {goal.assists && goal.assists.length > 0 && (
                     <p className="text-xs">Assists: {goal.assists.map((assist, assistIndex) => (
-                      <span key={assistIndex}>{assist.firstName} {assist.lastName}{assistIndex < goal.assists.length - 1 ? ', ' : ''}</span>
+                      <span key={assistIndex}>{assist.lastName} ({assist.assistsToDate}){assistIndex < goal.assists.length - 1 ? ', ' : ''}</span>
                     ))}</p>
                   )}
                 </div>

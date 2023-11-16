@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import Banner from "./Banner";
 import Boxscore from "./Boxscore";
-import Info from "./Info";
+import Info from "./GameInfo";
 import Scoring from "./ScoringSummary";
 import ThreeStars from "./ThreeStars";
 

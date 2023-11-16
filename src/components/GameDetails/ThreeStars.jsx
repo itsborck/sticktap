@@ -19,7 +19,6 @@ const ThreeStars = ({ gameId }) => {
 
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1 className="font-bold text-xl">Three Stars</h1>
       {stats && stats.map((star, index) => (
         <div key={index} className="flex flex-row max-w-sm rounded overflow-hidden shadow-lg m-4">
           <img className="w-1/3" src={star.headshot} alt={star.name} />
