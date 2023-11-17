@@ -9,7 +9,7 @@ const Standings = () => {
     const fetchStandings = async () => {
       try {
         const response = await axios.get(
-          "https://api-web.nhle.com/v1/standings/now"
+          "https://corsproxy.io/?https://api-web.nhle.com/v1/standings/now"
         );
         setStandings(response.data.standings);
       } catch (error) {

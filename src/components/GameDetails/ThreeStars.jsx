@@ -7,7 +7,7 @@ const ThreeStars = ({ gameId }) => {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const response = await axios.get(`https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`);
+        const response = await axios.get(`https://corsproxy.io/?https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`);
         setStats(response.data.summary.threeStars);
       } catch (error) {
         console.error('Error fetching goals:', error);

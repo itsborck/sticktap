@@ -21,7 +21,7 @@ const WeeklySchedule = () => {
   useEffect(() => {
     const fetchSchedule = async () => {
       try {
-        const response = await axios.get(`https://api-web.nhle.com/v1/schedule/${formattedDate}`);
+        const response = await axios.get(`https://corsproxy.io/?https://api-web.nhle.com/v1/schedule/${formattedDate}`);
         setGameWeek(response.data.gameWeek);
       } catch (error) {
         console.error("Error fetching schedule: ", error);

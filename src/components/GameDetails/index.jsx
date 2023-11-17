@@ -17,7 +17,7 @@ const GameDetailsContainer = () => {
     const fetchGamecenter = async () => {
       try {
         const response = await axios.get(
-          `https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`
+          `https://corsproxy.io/?https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`
         );
         setGamecenter(response.data);
       } catch (error) {
