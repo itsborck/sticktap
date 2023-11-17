@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import '../../index.css'
+import "../../index.css";
 
 const GameCard = ({ game }) => {
   function convertUTCToLocalTime(utcTime) {
@@ -10,16 +10,22 @@ const GameCard = ({ game }) => {
   return (
     <Link to={`/game/${game.id}`}>
       <div
-        className={`bg-gray-700 text-white p-2 rounded-lg shadow-md hover:bg-gray-600 transiton duration-300 ${game.specialEvent ? "border-2 border-yellow-500" : ""}`}
+        className={`bg-gray-700 text-white p-2 rounded-lg shadow-md hover:bg-gray-600 transiton duration-300 ${
+          game.specialEvent ? "border-2 border-yellow-500" : ""
+        }`}
       >
         <div className="flex justify-center items-center text-center">
           <span className="flex flex-col text-xl items-center justify-center">
             {game.gameState === "FUT" || game.gameState === "PRE" ? (
               game.specialEventLogo ? (
                 <span className="flex flex-row">
-                  <span className="mt-6 mr-2 font-bold">{game.awayTeam.abbrev}</span>
+                  <span className="mt-6 mr-2 font-bold">
+                    {game.awayTeam.abbrev}
+                  </span>
                   <img src={game.specialEventLogo} />
-                  <span className="mt-6 ml-2 font-bold">{game.homeTeam.abbrev}</span>
+                  <span className="mt-6 ml-2 font-bold">
+                    {game.homeTeam.abbrev}
+                  </span>
                 </span>
               ) : (
                 <span className="flex flex-row">
@@ -38,28 +44,39 @@ const GameCard = ({ game }) => {
                   <span className="mt-2 font-bold">{game.homeTeam.abbrev}</span>
                 </span>
               )
-            ) : game.gameState === "LIVE" || game.gameState === "CRIT" || game.gameState === "FINAL" || game.gameState === "OFF" ? (
+            ) : game.gameState === "LIVE" ||
+              game.gameState === "CRIT" ||
+              game.gameState === "FINAL" ||
+              game.gameState === "OFF" ? (
               <span className="flex flex-row">
                 <span className="mt-2 font-bold">{game.awayTeam.abbrev}</span>
-                  <img
-                    src={game.awayTeam.logo}
-                    alt={game.awayTeam.placeName.default}
-                    className="w-16 mb-5 mr-7"
-                  />
-                  <span className="font-bold flex justify-between mt-2">{game.awayTeam.score} - {game.homeTeam.score}</span>
-                  <img
-                    src={game.homeTeam.logo}
-                    alt={game.homeTeam.placeName.default}
-                    className="w-16 mb-5 ml-7"
-                  />
-                  <span className="mt-2 font-bold">{game.homeTeam.abbrev}</span>
+                <img
+                  src={game.awayTeam.logo}
+                  alt={game.awayTeam.placeName.default}
+                  className="w-16 mb-5 mr-7"
+                />
+                <span className="font-bold flex justify-between mt-2">
+                  {game.awayTeam.score} - {game.homeTeam.score}
                 </span>
+                <img
+                  src={game.homeTeam.logo}
+                  alt={game.homeTeam.placeName.default}
+                  className="w-16 mb-5 ml-7"
+                />
+                <span className="mt-2 font-bold">{game.homeTeam.abbrev}</span>
+              </span>
             ) : null}
             <div className="text-sm text-center">
               {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
                 <p>Period {game.periodDescriptor.number}</p>
               ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
-                <p>{game.gameOutcome.lastPeriodType === "OT" ? "Final/OT" : game.gameOutcome.lastPeriodType === "SO" ? "Final/SO" : "Final"}</p>
+                <p>
+                  {game.gameOutcome.lastPeriodType === "OT"
+                    ? "Final/OT"
+                    : game.gameOutcome.lastPeriodType === "SO"
+                    ? "Final/SO"
+                    : "Final"}
+                </p>
               ) : (
                 <div className="text-xs">
                   <p>Start Time: {convertUTCToLocalTime(game.startTimeUTC)}</p>

@@ -7,9 +7,7 @@ const ScheduleDay = ({ day }) => {
         {day.games.length === 0 ? (
           <p>No games scheduled.</p>
         ) : (
-          day.games.map((game) => (
-            <GameCard key={game.id} game={game} />
-          ))
+          day.games.map((game) => <GameCard key={game.id} game={game} />)
         )}
       </div>
     </div>

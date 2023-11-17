@@ -23,7 +23,9 @@ const Scoring = ({ gameId }) => {
     <div className="w-lg sm:w-full mx-auto mt-4 p-4 rounded-lg shadow-md">
       {goals.map((period, index) => (
         <div key={index} className="mb-4">
-          <h2 className="text-lg font-semibold mb-2 text-gray-400">Period {period.period}</h2>
+          <h2 className="text-lg font-semibold mb-2 text-gray-400">
+            Period {period.period}
+          </h2>
           {period.goals && period.goals.length > 0 ? (
             <div className="grid grid-cols-1 gap-4">
               {period.goals.map((goal, goalIndex) => (

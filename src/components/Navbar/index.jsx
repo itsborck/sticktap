@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import { FaUser, FaCalendar, FaTrophy, FaBars, FaX } from "react-icons/fa6";
 import { useState } from "react";
+import { FaBars, FaCalendar, FaTrophy, FaUser, FaX } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,34 +14,42 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <span className="text-white text-lg font-bold">
-          StickTap
-        </span>
+        <span className="text-white text-lg font-bold">StickTap</span>
 
         {isMobile ? (
           <>
-          <FaBars className="text-white cursor-pointer" onClick={toggleMenu} />
-          {isOpen ? (
-            <div className="absolute top-0 left-0 w-full h-full bg-blue-500 flex flex-col p-5 pt-20 space-y-3 transition-transform ease-in-out duration-300 transform translate-x-0">
-              <FaX className="text-white cursor-pointer absolute top-0 right-0 m-5" onClick={toggleMenu}/>
-              <Link to="/schedule" className="text-white inline" onClick={toggleMenu}>
-                <FaCalendar className="mr-2"/> Schedule
-              </Link>
-              <Link to="/standings" className="text-white" onClick={toggleMenu}>
-                <FaTrophy className="mr-2"/> Standings
-              </Link>
-            </div>
-          ) : (
-            <div className="absolute top-0 left-0 w-full h-full bg-blue-500 flex flex-col p-5 pt-20 space-y-3 transition-transform ease-in-out duration-300 transform -translate-x-full"></div>
-          )}
-        </>
-      ) : (
-        <div className="space-x-6 flex items-center">
-          <Link to="/schedule" className="text-white flex">
-            <FaCalendar className="mr-2"/> Schedule
-          </Link>
-          <Link to="/standings" className="text-white flex">
-              <FaTrophy className="mr-2"/> Standings
+            <FaBars
+              className="text-white cursor-pointer"
+              onClick={toggleMenu}
+            />
+            {isOpen ? (
+              <div className="absolute top-0 left-0 w-full h-full bg-blue-500 flex flex-col p-5 pt-20 space-y-3 transition-transform ease-in-out duration-300 transform translate-x-0">
+                <FaX
+                  className="text-white cursor-pointer absolute top-0 right-0 m-5"
+                  onClick={toggleMenu}
+                />
+                <Link to="/" className="text-white inline" onClick={toggleMenu}>
+                  <FaCalendar className="mr-2" /> Schedule
+                </Link>
+                <Link
+                  to="/standings"
+                  className="text-white"
+                  onClick={toggleMenu}
+                >
+                  <FaTrophy className="mr-2" /> Standings
+                </Link>
+              </div>
+            ) : (
+              <div className="absolute top-0 left-0 w-full h-full bg-blue-500 flex flex-col p-5 pt-20 space-y-3 transition-transform ease-in-out duration-300 transform -translate-x-full"></div>
+            )}
+          </>
+        ) : (
+          <div className="space-x-6 flex items-center">
+            <Link to="/" className="text-white flex">
+              <FaCalendar className="mr-2" /> Schedule
+            </Link>
+            <Link to="/standings" className="text-white flex">
+              <FaTrophy className="mr-2" /> Standings
             </Link>
           </div>
         )}
