@@ -46,6 +46,7 @@ const Standings = () => {
   const renderDivisionTable = (divisionName, teams) => (
     <div key={divisionName} className="my-4">
       <h2 className="text-2xl font-bold mb-2">{divisionName}</h2>
+      <div className="overflow-x-scroll">
       <table className="table-auto w-full">
         <thead className="text-center">
           <tr className="bg-gray-700 text-gray-400 uppercase text-sm leading-normal">
@@ -98,6 +99,7 @@ const Standings = () => {
           ))}
         </tbody>
       </table>
+      </div>
     </div>
   );
 
