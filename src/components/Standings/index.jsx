@@ -7,7 +7,6 @@ const Standings = () => {
 
   const today = new Date();
   const formattedDate = today.toISOString().split('T')[0];
-  console.log(formattedDate);
 
   useEffect(() => {
     const fetchStandings = async () => {
@@ -46,7 +45,7 @@ const Standings = () => {
   const renderDivisionTable = (divisionName, teams) => (
     <div key={divisionName} className="my-4">
       <h2 className="text-2xl font-bold mb-2">{divisionName}</h2>
-      <div className="overflow-x-scroll">
+      <div className="overflow-x-auto">
       <table className="table-auto w-full">
         <thead className="text-center">
           <tr className="bg-gray-700 text-gray-400 uppercase text-sm leading-normal">

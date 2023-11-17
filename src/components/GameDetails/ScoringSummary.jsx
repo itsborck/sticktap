@@ -20,7 +20,7 @@ const Scoring = ({ gameId }) => {
   }, [gameId]);
 
   return (
-    <div className="max-w-lg mx-auto mt-4 p-4 rounded-lg shadow-md">
+    <div className="w-lg sm:w-full mx-auto mt-4 p-4 rounded-lg shadow-md">
       {goals.map((period, index) => (
         <div key={index} className="mb-4">
           <h2 className="text-lg font-semibold mb-2 text-gray-400">Period {period.period}</h2>
@@ -28,7 +28,7 @@ const Scoring = ({ gameId }) => {
             <div className="grid grid-cols-1 gap-4">
               {period.goals.map((goal, goalIndex) => (
                 <div key={goalIndex} className="border-b pb-2 flex">
-                  <img className="w-1/6" src={goal.headshot} />
+                  <img className="w-1/6 object-cover" src={goal.headshot} />
                   <div className="ml-4">
                     <p className="text-sm font-medium">
                       <strong>

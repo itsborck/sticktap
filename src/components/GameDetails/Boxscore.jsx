@@ -24,7 +24,7 @@ const Boxscore = ({ game }) => {
         </thead>
         <tbody>
           <tr>
-            <td className="border-r border-gray-500 py-2 pl-2">Away</td>
+            <td className="border-r border-gray-500 py-2 pl-2">{game.awayTeam.abbrev}</td>
             {game.boxscore.linescore.byPeriod.map((period) => (
               <td
                 key={period.period}
@@ -38,7 +38,7 @@ const Boxscore = ({ game }) => {
             </td>
           </tr>
           <tr>
-            <td className="border-r border-gray-500 py-2 pl-2">Home</td>
+            <td className="border-r border-gray-500 py-2 pl-2">{game.homeTeam.abbrev}</td>
             {game.boxscore.linescore.byPeriod.map((period) => (
               <td
                 key={period.period}
