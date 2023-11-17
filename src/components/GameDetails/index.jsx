@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
 import Banner from "./Banner";
 import Boxscore from "./Boxscore";
@@ -10,7 +10,6 @@ import ThreeStars from "./ThreeStars";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
-  const navigate = useNavigate();
   const [gamecenter, setGamecenter] = useState(null);
 
   useEffect(() => {
@@ -41,12 +40,6 @@ const GameDetailsContainer = () => {
     <>
       <Navbar />
       <div className="bg-gray-800 text-white">
-        <button
-          onClick={() => navigate("/schedule")}
-          className="mt-4 bg-gray-700 hover:bg-gray-600 px-4 py-2 rounded"
-        >
-          Back
-        </button>
         {gamecenter && (
           <div>
             <Banner game={gamecenter} />
