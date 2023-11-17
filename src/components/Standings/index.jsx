@@ -5,11 +5,15 @@ import Navbar from "../Navbar";
 const Standings = () => {
   const [standings, setStandings] = useState([]);
 
+  const today = new Date();
+  const formattedDate = today.toISOString().split('T')[0];
+  console.log(formattedDate);
+
   useEffect(() => {
     const fetchStandings = async () => {
       try {
         const response = await axios.get(
-          "https://corsproxy.io/?https://api-web.nhle.com/v1/standings/now"
+          `https://corsproxy.io/?https://api-web.nhle.com/v1/standings/${formattedDate}`
         );
         setStandings(response.data.standings);
       } catch (error) {
@@ -18,7 +22,7 @@ const Standings = () => {
     };
 
     fetchStandings();
-  }, []);
+  }, [formattedDate]);
 
   useEffect(() => {
     document.title = "Current Standings | StickTap";
