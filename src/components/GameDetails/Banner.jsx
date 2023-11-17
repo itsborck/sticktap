@@ -40,7 +40,7 @@ const Banner = ({ game }) => {
               ) :  null}
             </div>
           <div className="flex flex-col items-center">
-            <p className="text-2xl font-bold mr-8">
+            <p className="text-2xl font-bold ml-8">
               {game.homeTeam.name.default}
             </p>
             <p className="text-xs mr-8">

@@ -4,7 +4,7 @@ const Boxscore = ({ game }) => {
   }
 
   return (
-    <div>
+    <div className="text-white shadow-lg">
       <h2 className="text-lg font-bold mb-2">Boxscore</h2>
       <table className="table-auto w-full">
         <thead>

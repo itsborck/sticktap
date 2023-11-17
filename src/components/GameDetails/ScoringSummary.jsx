@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Scoring = ({ gameId }) => {
   const [goals, setGoals] = useState([]);
@@ -19,10 +19,6 @@ const Scoring = ({ gameId }) => {
     fetchGoals();
   }, [gameId]);
 
-  if (!goals) {
-    return null;
-  }
-
   return (
     <div className="max-w-lg mx-auto mt-4 p-4 rounded-lg shadow-md">
       {goals.map((period, index) => (
@@ -31,18 +27,33 @@ const Scoring = ({ gameId }) => {
           {period.goals && period.goals.length > 0 ? (
             <div className="grid grid-cols-1 gap-4">
               {period.goals.map((goal, goalIndex) => (
-                <div key={goalIndex} className="border-b pb-2">
-                  <img className='w-1/4' src={goal.headshot}/>
-                  <p className="text-sm font-medium">
-                    <strong>{goal.firstName} {goal.lastName}</strong> ({goal.teamAbbrev})
-                  </p>
-                  <p className="text-xs">Time: {goal.timeInPeriod}</p>
-                  <p className="text-xs">Shot Type: {goal.shotType}</p>
-                  {goal.assists && goal.assists.length > 0 && (
-                    <p className="text-xs">Assists: {goal.assists.map((assist, assistIndex) => (
-                      <span key={assistIndex}>{assist.lastName} ({assist.assistsToDate}){assistIndex < goal.assists.length - 1 ? ', ' : ''}</span>
-                    ))}</p>
-                  )}
+                <div key={goalIndex} className="border-b pb-2 flex">
+                  <img className="w-1/6" src={goal.headshot} />
+                  <div className="ml-4">
+                    <p className="text-sm font-medium">
+                      <strong>
+                        {goal.firstName} {goal.lastName}
+                      </strong>{" "}
+                      ({goal.teamAbbrev})
+                    </p>
+                    {goal.assists && goal.assists.length > 0 && (
+                      <p className="text-xs text-gray-400">
+                        {goal.assists.map((assist, assistIndex) => (
+                          <span key={assistIndex}>
+                            {assist.lastName} ({assist.assistsToDate})
+                            {assistIndex < goal.assists.length - 1 ? ", " : ""}
+                          </span>
+                        ))}
+                      </p>
+                    )}
+                    <p className="text-xs">Time: {goal.timeInPeriod}</p>
+                    <p className="text-xs">Shot: {goal.shotType}</p>
+                    {goal.strength === "pp" ? (
+                      <p className="text-xs">PP Goal</p>
+                    ) : goals.strength === "sh" ? (
+                      <p className="text-xs">SH Goal</p>
+                    ) : null}
+                  </div>
                 </div>
               ))}
             </div>
@@ -52,7 +63,7 @@ const Scoring = ({ gameId }) => {
         </div>
       ))}
     </div>
-  )
-}
+  );
+};
 
 export default Scoring;

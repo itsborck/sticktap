@@ -12,11 +12,11 @@ const Navbar = () => {
 
         {/* Navigation Links */}
         <div className="space-x-6 flex items-center">
-          <Link to="/schedule" className="text-white">
-            <FaCalendar /> Schedule
+          <Link to="/schedule" className="text-white flex">
+            <FaCalendar className="mr-2"/> Schedule
           </Link>
-          <Link to="/standings" className="text-white">
-            <FaTrophy /> Standings
+          <Link to="/standings" className="text-white flex">
+            <FaTrophy className="mr-2"/> Standings
           </Link>
           {/* <Link to="/account" className="text-white">
             <FaUser />

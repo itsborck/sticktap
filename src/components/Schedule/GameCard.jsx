@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import '../../index.css'
 
 const GameCard = ({ game }) => {
   function convertUTCToLocalTime(utcTime) {
@@ -9,17 +10,17 @@ const GameCard = ({ game }) => {
   return (
     <Link to={`/game/${game.id}`}>
       <div
-        className="bg-white dark:bg-gray-700 p-4 rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-gray-600 transiton duration-300"
+        className={`bg-gray-700 text-white p-4 rounded-lg shadow-md hover:bg-gray-600 transiton duration-300 ${game.specialEvent ? "border-2 border-yellow-500" : ""}`}
       >
         <div className="flex justify-between items-center mb-2">
           <div className="flex items-center">
-            {game.gameState === "LIVE" && game.specialEventLogo ? (
+            {game.gameState === "LIVE" && game.specialEventLogo || game.gameState === "FINAL" && game.specialEventLogo || game.gameState === "OFF" && game.specialEventLogo ? (
               <>
                 <span className="mb-5 font-bold">{game.awayTeam.abbrev}</span>
                 <img
                   src={game.awayTeam.logo}
                   alt={game.awayTeam.placeName.default}
-                  className="w-16 h-16 mr-2 mb-5"
+                  className="w-16 mr-2 mb-5"
                 />
               </>
             ) : game.specialEvent && game.specialEventLogo ? (
@@ -30,23 +31,39 @@ const GameCard = ({ game }) => {
                 <img
                   src={game.awayTeam.logo}
                   alt={game.awayTeam.placeName.default}
-                  className="w-16 h-16 mr-2 mb-5"
+                  className="w-16 mr-2 mb-5"
                 />
               </>
             )}
           </div>
-          <span className="flex flex-col text-xl items-center">
-            {game.gameState === "FUT" ? (
+          <span className="flex flex-col text-xl items-center justify-center">
+            {game.gameState === "FUT" || game.gameState === "PRE" ? (
               game.specialEvent && game.specialEventLogo ? (
-                <img src={game.specialEventLogo} />
+                <>
+                  <img src={game.specialEventLogo} />
+                </>
               ) : (
-                <span className="font-bold">@</span>
+                <span className="flex flex-row">
+                  {/* <span className="font-bold">{game.awayTeam.abbrev}</span>
+                  <img
+                    src={game.awayTeam.logo}
+                    alt={game.awayTeam.placeName.default}
+                    className="w-16 mb-5"
+                  /> */}
+                  <span className="font-bold">@</span>
+                  {/* <img
+                    src={game.homeTeam.logo}
+                    alt={game.homeTeam.placeName.default}
+                    className="w-16 mb-5"
+                  />
+                  <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span> */}
+                </span>
               )
             ) : game.gameState === "LIVE" || game.gameState === "CRIT" || game.gameState === "FINAL" || game.gameState === "OFF" ? (
               <span className="font-bold">{game.awayTeam.score} - {game.homeTeam.score}</span>
             ) : null}
             <div className="text-sm text-center">
-            {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
+              {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
                 <p>Period {game.periodDescriptor.number}</p>
               ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
                 <p>{game.gameOutcome.lastPeriodType === "OT" ? "Final/OT" : game.gameOutcome.lastPeriodType === "SO" ? "Final/SO" : "Final"}</p>
@@ -64,18 +81,27 @@ const GameCard = ({ game }) => {
                 <img
                   src={game.homeTeam.logo}
                   alt={game.homeTeam.placeName.default}
-                  className="w-16 h-16 mr-2 mb-5"
+                  className="w-16 mr-2 mb-5"
                 />
                 <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
               </>
-            ) : game.specialEvent && game.specialEventLogo ? (
-              <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
+            ) : game.specialEventLogo ? (
+              game.gameState === "FINAL" || game.gameState === "OFF" ? (
+                <>
+                  <img
+                    src={game.homeTeam.logo}
+                    alt={game.homeTeam.placeName.default}
+                    className="w-16 mr-2 mb-5"
+                  />
+                  <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
+                </>
+              ) : (<span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>)
             ) : (
               <>
                 <img
                   src={game.homeTeam.logo}
                   alt={game.homeTeam.placeName.default}
-                  className="w-16 h-16 mr-2 mb-5"
+                  className="w-16 mr-2 mb-5"
                 />
                 <span className="mb-5 font-bold">{game.homeTeam.abbrev}</span>
               </>

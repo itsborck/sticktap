@@ -2,11 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-.dark {
-  background-color: rgb(31 41 55);
-}
-
 body {
+  background-color: rgb(31 41 55);
   font-family: 'Poppins', sans-serif;
   overflow: overlay;
 }

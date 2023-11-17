@@ -44,7 +44,7 @@ const Standings = () => {
       <h2 className="text-2xl font-bold mb-2">{divisionName}</h2>
       <table className="table-auto w-full">
         <thead className="text-center">
-          <tr className="bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400 uppercase text-sm leading-normal">
+          <tr className="bg-gray-700 text-gray-400 uppercase text-sm leading-normal">
             <th className="py-3 px-6 ">Rank</th>
             <th className="py-3 px-6 ">Team</th>
             <th className="py-3 px-6 ">GP</th>
@@ -67,7 +67,7 @@ const Standings = () => {
         </thead>
         <tbody className="text-center">
           {teams.map((team) => (
-            <tr key={team.teamAbbrev.default} className="text-lg">
+            <tr key={team.teamAbbrev.default} className="text-lg even:bg-gray-700">
               <td className="py-3 px-6 border-b border-gray-700">{team.divisionSequence}</td>
               <td className="py-3 px-16 border-b border-gray-700">
                 <img src={team.teamLogo} alt={team.teamName.default} className="h-8 w-8 inline-block" />
@@ -100,7 +100,7 @@ const Standings = () => {
   return (
     <>
       <Navbar />
-      <div className="dark:bg-gray-800 dark:text-white p-6"> 
+      <div className="bg-gray-800 text-white p-6"> 
         <h1 className="text-3xl font-bold mb-4">Standings</h1>
         {Object.entries(groupByDivision()).map(([divisionName, teams]) =>
           renderDivisionTable(divisionName, teams)
