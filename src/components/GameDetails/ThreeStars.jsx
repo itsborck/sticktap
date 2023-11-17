@@ -8,7 +8,7 @@ const ThreeStars = ({ gameId }) => {
     const fetchStats = async () => {
       try {
         const response = await axios.get(
-          `https://corsproxy.io/?https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
+          `https://thingproxy.freeboard.io/fetch/https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
         );
         setStats(response.data.summary.threeStars);
       } catch (error) {
