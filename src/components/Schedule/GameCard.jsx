@@ -36,7 +36,20 @@ const GameCard = ({ game }) => {
     <Link to={`/game/${game.id}`}>
       <div
         className={`bg-gray-700 text-white p-2 rounded-lg shadow-md hover:bg-gray-600 transiton duration-300 ${
-          game.specialEvent ? "border-2 border-yellow-500" : ""
+          game.specialEvent ? (
+            game.gameState === "FINAL" || game.gameState === "OFF"
+            ? "border-2 border-green-500"
+            : "border-2 border-yellow-500"
+          )
+            : game.gameState === "CRIT"
+            ? "border-2 border-red-500 animate-flash"
+            : game.gameState === "LIVE"
+            ? "border-2 border-blue-500"
+            : game.gameState === "FINAL" || game.gameState === "OFF"
+            ? "border-2 border-green-500"
+            : game.gameState === "PRE" || game.gameState === "FUT"
+            ? "border-2 border-gray-500"
+            : ""
         }`}
       >
         <div className="flex justify-center items-center text-center">
@@ -94,17 +107,33 @@ const GameCard = ({ game }) => {
             <div className="text-sm text-center">
               {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
                 <p>
-                  {game.periodDescriptor.number === 4
-                    ? `OT - ${gameDetails && gameDetails.clock ? gameDetails.clock.timeRemaining : null}`
-                    : game.periodDescriptor.number === 5
-                    ? "SO"
-                    : gameDetails && gameDetails.clock && gameDetails.clock.inIntermission === true ? (
-                      game.periodDescriptor.number === 1 ? (
-                      <p>1st Intermission - {gameDetails.clock.timeRemaining}</p>
+                  {game.periodDescriptor.number === 4 ? (
+                    `OT - ${
+                      gameDetails && gameDetails.clock
+                        ? gameDetails.clock.timeRemaining
+                        : null
+                    }`
+                  ) : game.periodDescriptor.number === 5 ? (
+                    "SO"
+                  ) : gameDetails &&
+                    gameDetails.clock &&
+                    gameDetails.clock.inIntermission === true ? (
+                    game.periodDescriptor.number === 1 ? (
+                      <p>
+                        1st Intermission - {gameDetails.clock.timeRemaining}
+                      </p>
                     ) : game.periodDescriptor.number === 2 ? (
-                      <p>2nd Intermission - {gameDetails.clock.timeRemaining}</p>
-                    ) : null)
-                    : `Period ${game.periodDescriptor.number} - ${gameDetails && gameDetails.clock ? gameDetails.clock.timeRemaining : null}`}
+                      <p>
+                        2nd Intermission - {gameDetails.clock.timeRemaining}
+                      </p>
+                    ) : null
+                  ) : (
+                    `Period ${game.periodDescriptor.number} - ${
+                      gameDetails && gameDetails.clock
+                        ? gameDetails.clock.timeRemaining
+                        : null
+                    }`
+                  )}
                 </p>
               ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
                 <p>
@@ -117,7 +146,6 @@ const GameCard = ({ game }) => {
               ) : (
                 <div className="text-xs">
                   <p>Start Time: {convertUTCToLocalTime(game.startTimeUTC)}</p>
-                  <p>Venue: {game.venue.default}</p>
                 </div>
               )}
             </div>

@@ -6,7 +6,17 @@ export default {
   ],
   darkMode: 'class',
   theme: {
-    extend: {},
+    extend: {
+      keyframes: {
+        flash : {
+          '0%, 50%, 100%': { borderColor: 'transparent' },
+          '25%, 75%': { borderColor: 'rgb(239 68 68)' },
+        },
+      },
+      animation: {
+        flash: 'flash 2s infinite',
+      },
+    },
   },
   variants: {
     extned: {
