@@ -7,6 +7,7 @@ import Boxscore from "./Boxscore";
 import Info from "./GameInfo";
 import Scoring from "./ScoringSummary";
 import ThreeStars from "./ThreeStars";
+import BackButton from "./BackButton";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
@@ -48,6 +49,7 @@ const GameDetailsContainer = () => {
       <div className="bg-gray-800 text-white">
         {gamecenter && (
           <>
+            <BackButton />
             <Banner game={gamecenter} />
             <Boxscore
               game={gamecenter}
