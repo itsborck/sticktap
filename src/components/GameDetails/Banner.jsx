@@ -78,7 +78,7 @@ const Banner = ({ game }) => {
                   {game.homeTeam.name.default}
                 </p>
                 <p className="text-xs ml-8 text-right">
-                  {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
+                  {game.homeTeam.sog ? "SOG: " + game.homeTeam.sog : null}
                 </p>
               </>
             )}
