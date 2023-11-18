@@ -8,6 +8,7 @@ import Info from "./GameInfo";
 import Scoring from "./ScoringSummary";
 import ThreeStars from "./ThreeStars";
 import BackButton from "./BackButton";
+import Shootout from "./Shootout";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();
@@ -67,6 +68,9 @@ const GameDetailsContainer = () => {
                   game={gamecenter}
                   convertUTCToLocalTime={convertUTCToLocalTime}
                 />
+              </div>
+              <div>
+                <Shootout gameId={gameId} />
               </div>
             </div>
           </>
