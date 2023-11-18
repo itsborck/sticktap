@@ -1,7 +1,7 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "../../index.css";
-import { useEffect, useState } from "react";
-import axios from "axios";
 
 const GameCard = ({ game }) => {
   const [gameDetails, setGameDetails] = useState({});
@@ -90,7 +90,19 @@ const GameCard = ({ game }) => {
             ) : null}
             <div className="text-sm text-center">
               {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
-                <p>Period {game.periodDescriptor.number}</p>
+                <p>
+                  {game.periodDescriptor.number === 4
+                    ? "OT"
+                    : game.periodDescriptor.number === 5
+                    ? "SO"
+                    : gameDetails && gameDetails.clock && gameDetails.clock.inIntermission === true ? (
+                      game.periodDescriptor.number === 1 ? (
+                      <p>1st Intermission - {gameDetails.clock.timeRemaining}</p>
+                    ) : game.periodDescriptor.number === 2 ? (
+                      <p>2nd Intermission - {gameDetails.clock.timeRemaining}</p>
+                    ) : null)
+                    : `Period ${game.periodDescriptor.number} - ${gameDetails && gameDetails.clock ? gameDetails.clock.timeRemaining : null}`}
+                </p>
               ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
                 <p>
                   {game.gameOutcome.lastPeriodType === "OT"
