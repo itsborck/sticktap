@@ -34,7 +34,7 @@ const ThreeStars = ({ gameId }) => {
           className="flex flex-row max-w-sm rounded overflow-hidden shadow-lg m-4"
         >
           <img
-            className="w-1/3 object-cover"
+            className="w-1/3 object-cover rounded-full"
             src={star.headshot}
             alt={star.name}
           />
@@ -44,7 +44,14 @@ const ThreeStars = ({ gameId }) => {
             </div>
             <p className="text-base text-gray-300">Team: {star.teamAbbrev}</p>
             <p className="text-base text-gray-300">Position: {star.position}</p>
-            <p className="text-base text-gray-300">Points: {star.points}</p>
+            {star.position === 'G' ? (
+              <>
+                <p className="text-base text-gray-300">GAA: {star.goalsAgainstAverage}</p>
+                <p className="text-base text-gray-300">SV%: {star.savePctg}</p>
+              </>
+            ) : (
+              <p className="text-base text-gray-300">Points: {star.points}</p>
+            )}
           </div>
         </div>
       ))}
