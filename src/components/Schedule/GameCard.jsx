@@ -27,6 +27,9 @@ const GameCard = ({ game }) => {
     };
 
     fetchGameDetails();
+    const interval = setInterval(fetchGameDetails, 15000);
+
+    return () => clearInterval(interval);
   }, [game.id]);
 
   return (
