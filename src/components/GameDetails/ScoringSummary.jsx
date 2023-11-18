@@ -8,7 +8,7 @@ const Scoring = ({ gameId }) => {
     const fetchGoals = async () => {
       try {
         const response = await axios.get(
-          `https://thingproxy.freeboard.io/fetch/https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
+          'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`)
         );
         setGoals(response.data.summary.scoring);
       } catch (error) {

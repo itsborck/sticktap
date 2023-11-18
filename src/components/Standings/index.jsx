@@ -12,7 +12,7 @@ const Standings = () => {
     const fetchStandings = async () => {
       try {
         const response = await axios.get(
-          `https://thingproxy.freeboard.io/fetch/https://api-web.nhle.com/v1/standings/${formattedDate}`
+          'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/standings/${formattedDate}`)
         );
         setStandings(response.data.standings);
       } catch (error) {

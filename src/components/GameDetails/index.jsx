@@ -16,7 +16,7 @@ const GameDetailsContainer = () => {
     const fetchGamecenter = async () => {
       try {
         const response = await axios.get(
-          `https://thingproxy.freeboard.io/fetch/https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`
+          'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`)
         );
         setGamecenter(response.data);
       } catch (error) {
