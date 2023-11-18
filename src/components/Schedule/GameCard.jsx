@@ -95,7 +95,7 @@ const GameCard = ({ game }) => {
               {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
                 <p>
                   {game.periodDescriptor.number === 4
-                    ? "OT"
+                    ? `OT - ${gameDetails && gameDetails.clock ? gameDetails.clock.timeRemaining : null}`
                     : game.periodDescriptor.number === 5
                     ? "SO"
                     : gameDetails && gameDetails.clock && gameDetails.clock.inIntermission === true ? (

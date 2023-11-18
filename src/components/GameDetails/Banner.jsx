@@ -51,7 +51,13 @@ const Banner = ({ game }) => {
                   ) : null
                 ) : (
                   <p>
-                    Period {game.period} - {game.clock.timeRemaining}
+                    {game.period === 4 ? (
+                      <p>OT - {game.clock.timeRemaining}</p>
+                    ) : game.period === 5 ? (
+                      <p>SO</p>
+                    ) : (
+                      `Period ${game.period} - ${game.clock.timeRemaining}`
+                    )}
                   </p>
                 )}
               </div>
