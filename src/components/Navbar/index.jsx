@@ -14,7 +14,10 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
-        <span className="text-white text-lg font-bold">StickTap</span>
+        <span className="text-white text-lg font-bold flex">
+          <img src="/logo_white.png" className="mr-2 w-8"/>
+          StickTap
+        </span>
 
         {isMobile ? (
           <>
