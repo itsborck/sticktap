@@ -2,27 +2,30 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const ThreeStars = ({ gameId }) => {
-  const [stats, setStats] = useState(null);
+  const [stars, setStars] = useState(null);
 
   useEffect(() => {
-    const fetchStats = async () => {
+    const fetchStars = async () => {
       try {
         const response = await axios.get(
           'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`)
         );
-        setStats(response.data.summary.threeStars);
+        setStars(response.data.summary.threeStars);
       } catch (error) {
         console.error("Error fetching goals:", error);
       }
     };
 
-    fetchStats();
+    fetchStars();
+    const interval = setInterval(fetchStars, 15000);
+
+    return () => clearInterval(interval);
   }, [gameId]);
 
-  return stats && stats.length > 0 ? (
+  return stars && stars.length > 0 ? (
     <div className="flex flex-col items-center justify-center">
       <h2 className="text-2xl font-bold mb-2">Three Stars</h2>
-      {stats.map((star, index) => (
+      {stars.map((star, index) => (
         <div
           key={index}
           className="flex flex-row max-w-sm rounded overflow-hidden shadow-lg m-4"

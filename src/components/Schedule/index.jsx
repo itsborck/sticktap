@@ -36,6 +36,9 @@ const WeeklySchedule = () => {
     };
 
     fetchSchedule();
+    const interval = setInterval(fetchSchedule, 15000);
+
+    return () => clearInterval(interval);
   }, [formattedDate]);
 
   return (

@@ -17,6 +17,9 @@ const Scoring = ({ gameId }) => {
     };
 
     fetchGoals();
+    const interval = setInterval(fetchGoals, 15000);
+
+    return () => clearInterval(interval);
   }, [gameId]);
 
   return (

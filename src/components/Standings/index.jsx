@@ -21,6 +21,9 @@ const Standings = () => {
     };
 
     fetchStandings();
+    const interval = setInterval(fetchStandings, 15000);
+
+    return () => clearInterval(interval);
   }, [formattedDate]);
 
   useEffect(() => {

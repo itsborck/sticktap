@@ -25,6 +25,9 @@ const GameDetailsContainer = () => {
     };
 
     fetchGamecenter();
+    const interval = setInterval(fetchGamecenter, 15000);
+
+    return () => clearInterval(interval);
   }, [gameId]);
 
   useEffect(() => {
