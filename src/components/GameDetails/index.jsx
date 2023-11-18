@@ -16,7 +16,10 @@ const GameDetailsContainer = () => {
     const fetchGamecenter = async () => {
       try {
         const response = await axios.get(
-          'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`)
+          "https://corsmirror.onrender.com/v1/cors?url=" +
+            encodeURIComponent(
+              `https://api-web.nhle.com/v1/gamecenter/${gameId}/boxscore`
+            )
         );
         setGamecenter(response.data);
       } catch (error) {
@@ -44,25 +47,27 @@ const GameDetailsContainer = () => {
       <Navbar />
       <div className="bg-gray-800 text-white">
         {gamecenter && (
-          <div>
+          <>
             <Banner game={gamecenter} />
             <Boxscore
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}
             />
-            <Info
-              game={gamecenter}
-              convertUTCToLocalTime={convertUTCToLocalTime}
-            />
-            <div className="flex justify-between">
-              <div className="w-1/2">
+            <div className="flex flex-row">
+              <div>
                 <Scoring gameId={gameId} />
               </div>
-              <div className="w-1/2">
+              <div>
                 <ThreeStars gameId={gameId} />
               </div>
+              <div>
+                <Info
+                  game={gamecenter}
+                  convertUTCToLocalTime={convertUTCToLocalTime}
+                />
+              </div>
             </div>
-          </div>
+          </>
         )}
       </div>
     </>

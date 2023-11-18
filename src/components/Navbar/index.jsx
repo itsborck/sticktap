@@ -23,7 +23,7 @@ const Navbar = () => {
               onClick={toggleMenu}
             />
             {isOpen ? (
-              <div className="absolute top-0 left-0 w-full h-full bg-blue-500 flex flex-col p-5 pt-20 space-y-3 transition-transform ease-in-out duration-300 transform translate-x-0">
+              <div className="absolute top-0 left-0 w-full h-full bg-blue-500 flex flex-col p-5 pt-20 space-y-3 transition-transform ease-in-out duration-300 transform translate-x-0 z-10">
                 <FaX
                   className="text-white cursor-pointer absolute top-0 right-0 m-5"
                   onClick={toggleMenu}

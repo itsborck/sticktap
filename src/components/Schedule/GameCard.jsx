@@ -1,11 +1,33 @@
 import { Link } from "react-router-dom";
 import "../../index.css";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const GameCard = ({ game }) => {
+  const [gameDetails, setGameDetails] = useState({});
+
   function convertUTCToLocalTime(utcTime) {
     const date = new Date(utcTime);
     return date.toLocaleTimeString([], { hour: "numeric", minute: "numeric" });
   }
+
+  useEffect(() => {
+    const fetchGameDetails = async () => {
+      try {
+        const response = await axios.get(
+          "https://corsmirror.onrender.com/v1/cors?url=" +
+            encodeURIComponent(
+              `https://api-web.nhle.com/v1/gamecenter/${game.id}/landing`
+            )
+        );
+        setGameDetails(response.data);
+      } catch (error) {
+        console.error("Error fetching game details: ", error);
+      }
+    };
+
+    fetchGameDetails();
+  }, [game.id]);
 
   return (
     <Link to={`/game/${game.id}`}>

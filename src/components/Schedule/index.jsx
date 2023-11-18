@@ -27,7 +27,10 @@ const WeeklySchedule = () => {
     const fetchSchedule = async () => {
       try {
         const response = await axios.get(
-          'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/schedule/${formattedDate}`)
+          "https://corsmirror.onrender.com/v1/cors?url=" +
+            encodeURIComponent(
+              `https://api-web.nhle.com/v1/schedule/${formattedDate}`
+            )
         );
         setGameWeek(response.data.gameWeek);
       } catch (error) {

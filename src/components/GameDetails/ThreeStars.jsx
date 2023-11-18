@@ -8,7 +8,10 @@ const ThreeStars = ({ gameId }) => {
     const fetchStars = async () => {
       try {
         const response = await axios.get(
-          'https://corsmirror.onrender.com/v1/cors?url=' + encodeURIComponent(`https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`)
+          "https://corsmirror.onrender.com/v1/cors?url=" +
+            encodeURIComponent(
+              `https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
+            )
         );
         setStars(response.data.summary.threeStars);
       } catch (error) {

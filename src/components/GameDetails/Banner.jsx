@@ -17,7 +17,7 @@ const Banner = ({ game }) => {
 
   return (
     <div className="bg-gray-900 py-8 text-white mb-8 relative overflow-hidden">
-      <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50 z-0" />
+      <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50" />
       <div className="relative flex flex-col items-center container mx-auto">
         <div className="flex items-center mb-4">
           <img
@@ -25,13 +25,13 @@ const Banner = ({ game }) => {
             alt={game.awayTeam.name.default}
             className="w-12 h-12 mr-4"
           />
-          <div className="flex flex-col items-center">
+          <div className="flex flex-col">
             {!isMobile && (
               <>
                 <p className="text-2xl font-bold mr-8">
                   {game.awayTeam.name.default}
                 </p>
-                <p className="text-xs mr-8">
+                <p className="text-xs mr-8 text-left">
                   {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
                 </p>
               </>
@@ -67,16 +67,18 @@ const Banner = ({ game }) => {
               </p>
             ) : null}
           </div>
-          {!isMobile && (
-            <div className="flex flex-col items-center">
-              <p className="text-2xl font-bold ml-8">
-                {game.homeTeam.name.default}
-              </p>
-              <p className="text-xs mr-8">
-                {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
-              </p>
-            </div>
-          )}
+          <div className="flex flex-col">
+            {!isMobile && (
+              <>
+                <p className="text-2xl font-bold ml-8">
+                  {game.homeTeam.name.default}
+                </p>
+                <p className="text-xs ml-8 text-right">
+                  {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
+                </p>
+              </>
+            )}
+          </div>
           <img
             src={game.homeTeam.logo}
             alt={game.homeTeam.name.default}
