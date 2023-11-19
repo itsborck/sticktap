@@ -13,16 +13,16 @@ const ScheduleDay = ({ day }) => {
           <p>No games scheduled.</p>
         ) : (
           <>
-          <div className="grid grid-cols-3 gap-4">
-            {liveGames.length > 0 && <div className="text-2xl col-span-3">Live</div>}
+          <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+            {liveGames.length > 0 && <div className="text-2xl sm:col-span-1 lg:col-span-3">Live</div>}
             {liveGames.map((game) => <GameCard key={game.id} game={game} />)}
           </div>
-          <div className="grid grid-cols-3 gap-4">
-            {futureGames.length > 0 && <div className="text-2xl col-span-3">Upcoming</div>}
+          <div className="grid sm:grid-col-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+            {futureGames.length > 0 && <div className="text-2xl sm:col-span-1 lg:col-span-3">Upcoming</div>}
             {futureGames.map((game) => <GameCard key={game.id} game={game} />)}
           </div>
-          <div className="grid grid-cols-3 gap-4">
-            {finalGames.length > 0 && <div className="text-2xl col-span-3">Final</div>}
+          <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+            {finalGames.length > 0 && <div className="text-2xl sm:col-span-1 lg:col-span-3">Final</div>}
             {finalGames.map((game) => <GameCard key={game.id} game={game} />)}
           </div>
           </>
