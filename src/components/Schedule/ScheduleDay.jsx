@@ -11,6 +11,18 @@ const ScheduleDay = ({ day }) => {
     (game) => game.gameState === "FINAL" || game.gameState === "OFF"
   );
 
+  const postponedGames = day.games.filter(
+    (game) => game.gameScheduleState === "PPD"
+  );
+
+  const cancelledGames = day.games.filter(
+    (game) => game.gameScheduleState === "CNCL"
+  );
+
+  const suspendedGames = day.games.filter(
+    (game) => game.gameScheduleState === "SUSP"
+  );
+
   return (
     <div key={day.date} className="mb-8">
       <div className="grid lg:pl-4 md:pl-4 md:pr-4 gap-4">

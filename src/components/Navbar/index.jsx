@@ -55,9 +55,9 @@ const Navbar = () => {
             <Link to="/standings" className="text-white flex">
               <FaTrophy className="mr-2" /> Standings
             </Link>
-            <Link to="/account" className="text-white flex" >
+            {/* <Link to="/account" className="text-white flex" >
               <FaUser className="mr-2" /> Account
-            </Link>
+            </Link> */}
           </div>
         )}
       </div>
