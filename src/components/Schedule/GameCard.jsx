@@ -36,11 +36,10 @@ const GameCard = ({ game }) => {
     <Link to={`/game/${game.id}`}>
       <div
         className={`bg-gray-700 text-white p-2 rounded-lg shadow-md hover:bg-gray-600 transiton duration-300 ${
-          game.specialEvent ? (
-            game.gameState === "FINAL" || game.gameState === "OFF"
-            ? "border-2 border-green-500"
-            : "border-2 border-yellow-500"
-          )
+          game.specialEvent
+            ? game.gameState === "FINAL" || game.gameState === "OFF"
+              ? "border-2 border-green-500"
+              : "border-2 border-yellow-500"
             : game.gameState === "CRIT"
             ? "border-2 border-red-500 animate-flash"
             : game.gameState === "LIVE"

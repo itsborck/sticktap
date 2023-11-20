@@ -23,7 +23,7 @@ const Banner = ({ game }) => {
           <img
             src={game.awayTeam.logo}
             alt={game.awayTeam.name.default}
-            className="w-12 h-12 mr-4"
+            className="w-24 h-24 mr-4"
           />
           <div className="flex flex-col">
             {!isMobile && (
@@ -86,7 +86,7 @@ const Banner = ({ game }) => {
           <img
             src={game.homeTeam.logo}
             alt={game.homeTeam.name.default}
-            className="w-12 h-12 ml-4"
+            className="w-24 h-24 ml-4"
           />
         </div>
       </div>

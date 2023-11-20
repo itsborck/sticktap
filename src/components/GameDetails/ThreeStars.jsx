@@ -44,9 +44,11 @@ const ThreeStars = ({ gameId }) => {
             </div>
             <p className="text-base text-gray-300">Team: {star.teamAbbrev}</p>
             <p className="text-base text-gray-300">Position: {star.position}</p>
-            {star.position === 'G' ? (
+            {star.position === "G" ? (
               <>
-                <p className="text-base text-gray-300">GAA: {star.goalsAgainstAverage}</p>
+                <p className="text-base text-gray-300">
+                  GAA: {star.goalsAgainstAverage}
+                </p>
                 <p className="text-base text-gray-300">SV%: {star.savePctg}</p>
               </>
             ) : (

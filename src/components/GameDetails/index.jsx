@@ -2,13 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
+import BackButton from "./BackButton";
 import Banner from "./Banner";
 import Boxscore from "./Boxscore";
 import Info from "./GameInfo";
 import Scoring from "./ScoringSummary";
-import ThreeStars from "./ThreeStars";
-import BackButton from "./BackButton";
 import Shootout from "./Shootout";
+import ThreeStars from "./ThreeStars";
 
 const GameDetailsContainer = () => {
   const { gameId } = useParams();

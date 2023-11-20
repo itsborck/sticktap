@@ -20,6 +20,9 @@ const Shootout = ({ gameId }) => {
     };
 
     fetchShootout();
+    const interval = setInterval(fetchShootout, 15000);
+
+    return () => clearInterval(interval);
   }, [gameId]);
 
   if (!shootout) {

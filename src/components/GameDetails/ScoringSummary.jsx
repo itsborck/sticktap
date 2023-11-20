@@ -36,7 +36,10 @@ const Scoring = ({ gameId }) => {
             <div className="grid grid-cols-1 gap-4">
               {period.goals.map((goal, goalIndex) => (
                 <div key={goalIndex} className="border-b pb-2 flex">
-                  <img className="w-1/6 object-cover rounded-full" src={goal.headshot} />
+                  <img
+                    className="w-1/6 object-cover rounded-full"
+                    src={goal.headshot}
+                  />
                   <div className="ml-4">
                     <p className="text-sm font-medium">
                       <strong>
