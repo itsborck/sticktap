@@ -122,7 +122,7 @@ const Standings = () => {
                 <td className="py-3 px-6 border-b border-gray-700">
                   {team.goalAgainst}
                 </td>
-                <td className="py-3 px-6 border-b border-gray-700">
+                <td className={`py-3 px-6 border-b border-gray-700 ${team.goalDifferential < 0 ? 'text-red-500' : 'text-green-500'}`}>
                   {team.goalDifferential}
                 </td>
                 <td className="py-3 px-4 border-b border-gray-700">

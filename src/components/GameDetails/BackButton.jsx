@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { FaChevronLeft } from "react-icons/fa6";
 
 const BackButton = () => {
   const navigate = useNavigate();
@@ -9,10 +10,10 @@ const BackButton = () => {
 
   return (
     <button
-      className="bg-gray-700 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded"
+      className="hover:text-gray-400 text-white font-bold py-2 px-4 rounded flex items-center gap-2"
       onClick={handleBack}
     >
-      Back
+      <FaChevronLeft/> Back
     </button>
   );
 };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import BackButton from "./BackButton";
 
 const Banner = ({ game }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
@@ -17,6 +18,9 @@ const Banner = ({ game }) => {
 
   return (
     <div className="bg-gray-900 py-8 text-white mb-8 relative overflow-hidden">
+      <div style={{ zIndex: 1, position: 'relative' }}>
+        <BackButton />
+      </div>
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50" />
       <div className="relative flex flex-col items-center container mx-auto">
         <div className="flex items-center mb-4">

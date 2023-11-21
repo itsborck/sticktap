@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Navbar from "../Navbar";
-import BackButton from "./BackButton";
 import Banner from "./Banner";
 import Boxscore from "./Boxscore";
 import Info from "./GameInfo";
@@ -50,13 +49,12 @@ const GameDetailsContainer = () => {
       <div className="bg-gray-800 text-white">
         {gamecenter && (
           <>
-            <BackButton />
             <Banner game={gamecenter} />
             <Boxscore
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}
             />
-            <div className="flex flex-row">
+            <div className="flex flex-col sm:flex-row">
               <div>
                 <Scoring gameId={gameId} />
               </div>
