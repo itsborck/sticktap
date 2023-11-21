@@ -35,6 +35,11 @@ const Banner = ({ game }) => {
                 <p className="text-2xl font-bold mr-8">
                   {game.awayTeam.name.default}
                 </p>
+                {/* <p className="text-xs">
+                  {game.situation && game.situation.awayTeam.situationDescriptions === "PP" ? (
+                    <p>PP</p>
+                  ) : null}
+                </p> */}
                 <p className="text-xs mr-8 text-left">
                   {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
                 </p>
@@ -81,6 +86,11 @@ const Banner = ({ game }) => {
                 <p className="text-2xl font-bold ml-8">
                   {game.homeTeam.name.default}
                 </p>
+                {/* <p className="text-xs">
+                  {game.situation && game.situation.homeTeam.situationDescriptions === "PP" ? (
+                    <p>PP</p>
+                  ) : null}
+                </p> */}
                 <p className="text-xs ml-8 text-right">
                   {game.homeTeam.sog ? "SOG: " + game.homeTeam.sog : null}
                 </p>

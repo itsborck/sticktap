@@ -4,14 +4,14 @@ const Boxscore = ({ game }) => {
   }
 
   return (
-    <div className="text-white shadow-lg">
-      <h2 className="text-lg font-bold mb-2">Boxscore</h2>
-      <table className="table-auto w-full">
+    <div className="text-white rounded-lg shadow-lg p-6 mx-4 overflow-auto">
+      <h2 className="text-2xl font-bold mb-2">Boxscore</h2>
+      <table className="min-w-full divide-y divide-gray-200">
         <thead>
           <tr className="border-b-2 border-gray-500">
             <th className="py-2 text-left">Period</th>
             {game.boxscore.linescore.byPeriod.map((period) => (
-              <th key={period.period} className="py-2 text-center">
+              <th key={period.period} className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
                 {period.period === 4
                   ? "OT"
                   : period.period === 5

@@ -29,12 +29,20 @@ const Scoring = ({ gameId }) => {
     <div className="w-lg sm:w-full mx-auto mt-4 p-4 rounded-lg shadow-md">
       {goals.map((period, index) => (
         <div key={index} className="mb-4">
-          <h2 className="text-lg font-semibold mb-2 text-gray-400">
-            Period {period.period}
-          </h2>
+          {
+            period.period === 4 ? (
+              <h2 className="text-lg font-semibold mb-2 text-gray-400">
+                OT
+              </h2>
+            ) : period.period === 5 ? null : (
+              <h2 className="text-lg font-semibold mb-2 text-gray-400">
+                Period {period.period}
+              </h2>
+            )
+          }
           {period.goals && period.goals.length > 0 ? (
             <div className="grid grid-cols-1 gap-4">
-              {period.goals.map((goal, goalIndex) => (
+              {period.period !== 5 && period.goals.map((goal, goalIndex) => (
                 <div key={goalIndex} className="border-b pb-2 flex">
                   <img
                     className="w-1/6 object-cover rounded-full"
@@ -61,7 +69,7 @@ const Scoring = ({ gameId }) => {
                     <p className="text-xs">Shot: {goal.shotType}</p>
                     {goal.strength === "pp" ? (
                       <p className="text-xs">PP Goal</p>
-                    ) : goals.strength === "sh" ? (
+                    ) : goal.strength === "sh" ? (
                       <p className="text-xs">SH Goal</p>
                     ) : null}
                   </div>
