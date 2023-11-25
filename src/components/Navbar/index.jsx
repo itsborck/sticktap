@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { FaBars, FaCalendar, FaTrophy, FaUser, FaX } from "react-icons/fa6";
+import {
+  FaBars,
+  FaCalendar,
+  FaPeopleGroup,
+  FaTrophy,
+  FaUser,
+  FaX,
+} from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
 
@@ -41,6 +48,9 @@ const Navbar = () => {
                 >
                   <FaTrophy className="mr-2" /> Standings
                 </Link>
+                <Link to="/player" className="text-white" onClick={toggleMenu}>
+                  <FaPeopleGroup className="mr-2" /> Players
+                </Link>
                 {/* <Link to="/account" className="text-white" onClick={toggleMenu}><FaUser className="mr-2" /> Account</Link> */}
               </div>
             ) : (
@@ -54,6 +64,9 @@ const Navbar = () => {
             </Link>
             <Link to="/standings" className="text-white flex">
               <FaTrophy className="mr-2" /> Standings
+            </Link>
+            <Link to="/player" className="text-white flex">
+              <FaPeopleGroup className="mr-2" /> Players
             </Link>
             {/* <Link to="/account" className="text-white flex" >
               <FaUser className="mr-2" /> Account
