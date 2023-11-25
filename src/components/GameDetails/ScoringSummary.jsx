@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Scoring = ({ gameId }) => {
   const [goals, setGoals] = useState([]);
@@ -49,19 +50,19 @@ const Scoring = ({ gameId }) => {
                     src={goal.headshot}
                   />
                   <div className="ml-4">
-                    <p className="text-sm font-medium">
+                    <Link to={`/player/${goal.playerId}`} className="text-sm font-medium hover:underline">
                       <strong>
                         {goal.firstName} {goal.lastName}
                       </strong>{" "}
                       ({goal.teamAbbrev})
-                    </p>
+                    </Link>
                     {goal.assists && goal.assists.length > 0 && (
                       <p className="text-xs text-gray-400">
                         {goal.assists.map((assist, assistIndex) => (
-                          <span key={assistIndex}>
+                          <Link key={assistIndex} to={`/player/${assist.playerId}`} className="hover:underline">
                             {assist.lastName} ({assist.assistsToDate})
                             {assistIndex < goal.assists.length - 1 ? ", " : ""}
-                          </span>
+                          </Link>
                         ))}
                       </p>
                     )}

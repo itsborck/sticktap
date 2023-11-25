@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const Shootout = ({ gameId }) => {
   const [shootout, setShootout] = useState(null);
@@ -39,9 +40,9 @@ const Shootout = ({ gameId }) => {
             alt={`${player.firstName} ${player.lastName}`}
           />
           <div className="ml-4">
-            <h2 className="text-2xl font-bold">
+            <Link to={`/player/${player.playerId}`} className="text-2xl font-bold hover:underline">
               {player.firstName} {player.lastName} ({player.teamAbbrev})
-            </h2>
+            </Link>
             <p className="mt-1">Shot Type: {player.shotType}</p>
             <p className="mt-1">Result: {player.result}</p>
             {player.gameWinner && (

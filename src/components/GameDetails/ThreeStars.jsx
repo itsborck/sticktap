@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const ThreeStars = ({ gameId }) => {
   const [stars, setStars] = useState(null);
@@ -40,7 +41,7 @@ const ThreeStars = ({ gameId }) => {
           />
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">
-              Star {star.star}: {star.name}
+              Star {star.star}: <Link to={`/player/${star.playerId}`} className="hover:underline">{star.name}</Link>
             </div>
             <p className="text-base text-gray-300">Team: {star.teamAbbrev}</p>
             <p className="text-base text-gray-300">Position: {star.position}</p>
