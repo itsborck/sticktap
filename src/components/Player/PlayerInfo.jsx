@@ -56,7 +56,17 @@ const PlayerInfo = ({ playerId }) => {
           {player.birthCountry}
         </p>
         <p className="text-sm text-white">{player.position === 'G' ? <strong>Catches:</strong> : <strong>Shoots:</strong>} {player.shootsCatches}</p>
-        <p className="text-sm text-white"><strong>Draft:</strong> {player.draftDetails.year}, {player.draftDetails.teamAbbrev} ({ordinalSuffix(player.draftDetails.overallPick)} Overall), {ordinalSuffix(player.draftDetails.round)} Round, {ordinalSuffix(player.draftDetails.pickInRound)} Pick</p>
+        {
+          player.draftDetails ? (
+            <p className="text-sm text-white">
+              <strong>Draft:</strong> {player.draftDetails.year}, {player.draftDetails.teamAbbrev} ({ordinalSuffix(player.draftDetails.overallPick)} Overall), {ordinalSuffix(player.draftDetails.round)} Round, {ordinalSuffix(player.draftDetails.pickInRound)} Pick
+            </p>
+          ) : (
+            <p className="text-sm text-white">
+              <strong>Draft:</strong> Undrafted
+            </p>
+          )
+        }
       </div>
     </div>
   );
