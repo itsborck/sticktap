@@ -18,7 +18,7 @@ const Banner = ({ game }) => {
 
   return (
     <div className="bg-gray-900 py-8 text-white mb-8 relative overflow-hidden">
-      <div style={{ zIndex: 1, position: 'relative' }}>
+      <div style={{ zIndex: 1, position: "relative" }}>
         <BackButton />
       </div>
       <div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-50" />

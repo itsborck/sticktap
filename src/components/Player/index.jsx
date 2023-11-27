@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Navbar from "../Navbar";
 import PlayerHeader from "./Header";
 import PlayerInfo from "./PlayerInfo";
-import Navbar from "../Navbar";
 
 const PlayerPage = () => {
   const { playerId } = useParams();

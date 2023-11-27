@@ -149,7 +149,13 @@ const Standings = () => {
                 <td className="py-3 px-6 border-b border-gray-700">
                   {team.goalAgainst}
                 </td>
-                <td className={`py-3 px-6 border-b border-gray-700 ${team.goalDifferential < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                <td
+                  className={`py-3 px-6 border-b border-gray-700 ${
+                    team.goalDifferential < 0
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
                   {team.goalDifferential}
                 </td>
                 <td className="py-3 px-4 border-b border-gray-700">
@@ -251,7 +257,13 @@ const Standings = () => {
                 <td className="py-3 px-6 border-b border-gray-700">
                   {team.goalAgainst}
                 </td>
-                <td className={`py-3 px-6 border-b border-gray-700 ${team.goalDifferential < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                <td
+                  className={`py-3 px-6 border-b border-gray-700 ${
+                    team.goalDifferential < 0
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
                   {team.goalDifferential}
                 </td>
                 <td className="py-3 px-4 border-b border-gray-700">
@@ -353,7 +365,13 @@ const Standings = () => {
                 <td className="py-3 px-6 border-b border-gray-700">
                   {team.goalAgainst}
                 </td>
-                <td className={`py-3 px-6 border-b border-gray-700 ${team.goalDifferential < 0 ? 'text-red-500' : 'text-green-500'}`}>
+                <td
+                  className={`py-3 px-6 border-b border-gray-700 ${
+                    team.goalDifferential < 0
+                      ? "text-red-500"
+                      : "text-green-500"
+                  }`}
+                >
                   {team.goalDifferential}
                 </td>
                 <td className="py-3 px-4 border-b border-gray-700">
@@ -391,20 +409,25 @@ const Standings = () => {
           onChange={(e) => setSortOption(e.target.value)}
           className="bg-transparent border border-gray-500 rounded px-4 py-2 mb-4"
         >
-          <option value="Division" className="text-black">Division</option>
-          <option value="Conference" className="text-black">Conference</option>
-          <option value="League" className="text-black">League</option>
+          <option value="Division" className="text-black">
+            Division
+          </option>
+          <option value="Conference" className="text-black">
+            Conference
+          </option>
+          <option value="League" className="text-black">
+            League
+          </option>
         </select>
-        {sortOption === 'Conference' 
-        ? Object.entries(groupByConference()).map(([conferenceName, teams]) =>
-            renderConferenceTable(conferenceName, teams)
-          )
-        : sortOption === 'League'
-        ? renderLeagueTable(standings)
-        : Object.entries(groupByDivision()).map(([divisionName, teams]) =>
-            renderDivisionTable(divisionName, teams)
-          )
-      }
+        {sortOption === "Conference"
+          ? Object.entries(groupByConference()).map(([conferenceName, teams]) =>
+              renderConferenceTable(conferenceName, teams)
+            )
+          : sortOption === "League"
+          ? renderLeagueTable(standings)
+          : Object.entries(groupByDivision()).map(([divisionName, teams]) =>
+              renderDivisionTable(divisionName, teams)
+            )}
       </div>
     </>
   );

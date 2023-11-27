@@ -40,7 +40,10 @@ const Shootout = ({ gameId }) => {
             alt={`${player.firstName} ${player.lastName}`}
           />
           <div className="ml-4">
-            <Link to={`/player/${player.playerId}`} className="text-2xl font-bold hover:underline">
+            <Link
+              to={`/player/${player.playerId}`}
+              className="text-2xl font-bold hover:underline"
+            >
               {player.firstName} {player.lastName} ({player.teamAbbrev})
             </Link>
             <p className="mt-1">Shot Type: {player.shotType}</p>

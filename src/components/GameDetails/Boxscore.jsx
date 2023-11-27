@@ -11,7 +11,10 @@ const Boxscore = ({ game }) => {
           <tr className="border-b-2 border-gray-500">
             <th className="py-2 text-left">Period</th>
             {game.boxscore.linescore.byPeriod.map((period) => (
-              <th key={period.period} className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">
+              <th
+                key={period.period}
+                className="px-6 py-3 text-center text-xs font-medium uppercase tracking-wider"
+              >
                 {period.period === 4
                   ? "OT"
                   : period.period === 5

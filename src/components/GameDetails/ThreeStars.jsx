@@ -41,7 +41,10 @@ const ThreeStars = ({ gameId }) => {
           />
           <div className="px-6 py-4">
             <div className="font-bold text-xl mb-2">
-              Star {star.star}: <Link to={`/player/${star.playerId}`} className="hover:underline">{star.name}</Link>
+              Star {star.star}:{" "}
+              <Link to={`/player/${star.playerId}`} className="hover:underline">
+                {star.name}
+              </Link>
             </div>
             <p className="text-base text-gray-300">Team: {star.teamAbbrev}</p>
             <p className="text-base text-gray-300">Position: {star.position}</p>
