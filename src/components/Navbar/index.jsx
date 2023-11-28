@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import {
   FaBars,
@@ -24,11 +24,24 @@ const Navbar = () => {
   const handleGoogleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
+      await signInWithRedirect(auth, provider);
     } catch (error) {
       console.error("Error signing up with Google: ", error);
     }
   };
+
+  useEffect(() => {
+    getRedirectResult(auth)
+      .then((result) => {
+        if (result.user) {
+          setIsLoggedIn(true);
+          setPhotoURL(result.user.photoURL);
+        }
+      })
+      .catch((error) => {
+        console.error("Error getting sign-in result: ", error);
+      });
+  }, []);
 
   useEffect(() => {
     const unsubscribe = getAuth().onAuthStateChanged((user) => {
