@@ -1,8 +1,41 @@
+import axios from "axios";
 import { useEffect, useState } from "react";
 import BackButton from "./BackButton";
 
 const Banner = ({ game }) => {
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
+  const [standings, setStandings] = useState([]);
+
+  const today = new Date();
+  const formattedDate = today.toISOString().split("T")[0];
+
+  const awayTeamStanding = standings.find(
+    (standing) => standing.teamAbbrev.default === game.awayTeam.abbrev
+  );
+  const homeTeamStanding = standings.find(
+    (standing) => standing.teamAbbrev.default === game.homeTeam.abbrev
+  );
+
+  useEffect(() => {
+    const fetchStandings = async () => {
+      try {
+        const response = await axios.get(
+          "https://corsmirror.onrender.com/v1/cors?url=" +
+            encodeURIComponent(
+              `https://api-web.nhle.com/v1/standings/${formattedDate}`
+            )
+        );
+        setStandings(response.data.standings);
+      } catch (error) {
+        console.error("Error fetching standings:", error);
+      }
+    };
+
+    fetchStandings();
+    const interval = setInterval(fetchStandings, 15000);
+
+    return () => clearInterval(interval);
+  }, [formattedDate]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -27,20 +60,20 @@ const Banner = ({ game }) => {
           <img
             src={game.awayTeam.logo}
             alt={game.awayTeam.name.default}
-            className="w-24 h-24 mr-4"
+            className="w-24 h-24 ml-4"
           />
           <div className="flex flex-col">
             {!isMobile && (
               <>
-                <p className="text-2xl font-bold mr-8">
+                <p className="text-2xl font-bold ml-8">
                   {game.awayTeam.name.default}
                 </p>
-                {/* <p className="text-xs">
-                  {game.situation && game.situation.awayTeam.situationDescriptions === "PP" ? (
-                    <p>PP</p>
-                  ) : null}
-                </p> */}
-                <p className="text-xs mr-8 text-left">
+                {awayTeamStanding && (
+                  <p className="text-xs ml-8 text-center">
+                    ({awayTeamStanding.wins}-{awayTeamStanding.losses}-{awayTeamStanding.otLosses})
+                  </p>
+                )}
+                <p className="text-xs ml-8 text-center">
                   {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
                 </p>
               </>
@@ -86,12 +119,12 @@ const Banner = ({ game }) => {
                 <p className="text-2xl font-bold ml-8">
                   {game.homeTeam.name.default}
                 </p>
-                {/* <p className="text-xs">
-                  {game.situation && game.situation.homeTeam.situationDescriptions === "PP" ? (
-                    <p>PP</p>
-                  ) : null}
-                </p> */}
-                <p className="text-xs ml-8 text-right">
+                {homeTeamStanding && (
+                  <p className="text-xs ml-8 text-center">
+                    ({homeTeamStanding.wins}-{homeTeamStanding.losses}-{homeTeamStanding.otLosses})
+                  </p>
+                )}
+                <p className="text-xs ml-8 text-center">
                   {game.homeTeam.sog ? "SOG: " + game.homeTeam.sog : null}
                 </p>
               </>
@@ -100,7 +133,7 @@ const Banner = ({ game }) => {
           <img
             src={game.homeTeam.logo}
             alt={game.homeTeam.name.default}
-            className="w-24 h-24 ml-4"
+            className="w-24 h-24 mr-4"
           />
         </div>
       </div>

@@ -20,6 +20,10 @@ const Dashboard = () => {
     return () => unsubscribe();
   }, []);
 
+  useEffect(() => {
+    document.title = "Your Account | StickTap";
+  });
+
   return (
     <div className="">
       <Navbar />

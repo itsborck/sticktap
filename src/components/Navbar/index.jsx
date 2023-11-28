@@ -19,7 +19,6 @@ const Navbar = () => {
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const dropdownRef = useRef(null);
 
-  const [displayName, setDisplayName] = useState("");
   const [photoURL, setPhotoURL] = useState("");
 
   const handleGoogleSignIn = async () => {
@@ -35,11 +34,9 @@ const Navbar = () => {
     const unsubscribe = getAuth().onAuthStateChanged((user) => {
       if (user) {
         setIsLoggedIn(true);
-        setDisplayName(user.displayName);
         setPhotoURL(user.photoURL);
       } else {
         setIsLoggedIn(false);
-        setDisplayName("");
         setPhotoURL("");
       }
     });
@@ -116,7 +113,7 @@ const Navbar = () => {
                         alt="Profile"
                         className="w-6 h-6 rounded-full mr-2"
                       />
-                      <span className="text-white">{displayName}</span>
+                      <span className="text-white">Account</span>
                     </div>
                   ) : (
                     <button
