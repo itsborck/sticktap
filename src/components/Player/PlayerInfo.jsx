@@ -43,20 +43,26 @@ const PlayerInfo = ({ playerId }) => {
     return i + "th";
   }
 
+  function convertInchesToFeet(inches) {
+    const feet = Math.floor(inches / 12);
+    const remainingInches = inches % 12;
+    return { feet, inches: remainingInches };
+  }
+
   return (
     <div className="flex items-center space-x-4 shadow-2xl">
       <img className="w-40 h-40 rounded-full" src={player.headshot} />
       <div>
         <p className="text-sm text-white">
-          <strong>Height:</strong> {player.heightInInches} inches (
-          {player.heightInCentimeters} cm)
+          <strong>Height: </strong> 
+          {convertInchesToFeet(player.heightInInches).feet}&apos; 
+          {convertInchesToFeet(player.heightInInches).inches}&quot;
         </p>
         <p className="text-sm text-white">
-          <strong>Weight:</strong> {player.weightInPounds} lbs (
-          {player.weightInKilograms} kg)
+          <strong>Weight:</strong> {player.weightInPounds} lbs
         </p>
         <p className="text-sm text-white">
-          <strong>Born:</strong> {player.birthDate}
+          <strong>Born:</strong> {new Date(player.birthDate).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
         </p>
         <p className="text-sm text-white">
           <strong>Birthplace:</strong> {player.birthCity.default},

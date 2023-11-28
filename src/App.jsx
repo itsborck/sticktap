@@ -2,7 +2,9 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import GameDetails from "./components/GameDetails";
 import Standings from "./components/Standings";
 import WeeklySchedule from "./components/Schedule";
-import Account from "./components/Authentication";
+import SignUp from "./components/Authentication/SignUp";
+import SignIn from "./components/Authentication/SignIn";
+import Dashboard from "./components/Authentication/Dashboard";
 import PlayerSpotlight from "./components/PlayerSpotlight";
 import PlayerPage from "./components/Player";
 import "./index.css";
@@ -15,7 +17,9 @@ function App() {
           <Route path="/*" Component={WeeklySchedule} />
           <Route path="/standings/*" Component={Standings} />
           <Route path="/game/:gameId/*" Component={GameDetails} />
-          <Route path="/account/*" Component={Account} />
+          <Route path="/signup" Component={SignUp} />
+          <Route path="/signin" Component={SignIn} />
+          <Route path="/account" Component={Dashboard}/>
           <Route path="/player/*" Component={PlayerSpotlight} />
           <Route path="/player/:playerId/*" Component={PlayerPage}/>
         </Routes>
