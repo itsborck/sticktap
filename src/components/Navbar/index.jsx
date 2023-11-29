@@ -1,4 +1,4 @@
-import { getAuth, GoogleAuthProvider, signInWithRedirect, getRedirectResult } from "firebase/auth";
+import { getAuth, GoogleAuthProvider, signInWithPopup, getRedirectResult } from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import {
   FaBars,
@@ -24,7 +24,7 @@ const Navbar = () => {
   const handleGoogleSignIn = async () => {
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithRedirect(auth, provider);
+      await signInWithPopup(auth, provider);
     } catch (error) {
       console.error("Error signing up with Google: ", error);
     }
