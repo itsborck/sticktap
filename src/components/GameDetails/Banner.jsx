@@ -38,10 +38,11 @@ const Banner = ({ game }) => {
     return () => clearInterval(interval);
   }, [formattedDate]);
 
-  function calculateWinProbability(standings, score) {
+  function calculateWinProbability(standings) {
     if (!standings) return null;
 
     const winPctg = standings.winPctg;
+    const goalsForPctg = standings.goalsForPctg;
     const goalDiff = standings.goalDifferential / 100;
     const recentForm = standings.l10Wins / 10;
     const points = standings.points / 100;
@@ -63,12 +64,16 @@ const Banner = ({ game }) => {
       homeWins +
       roadWins +
       regPlusOtWins +
-      streakCount;
+      streakCount +
+      goalsForPctg;
 
-    if (score) {
-      winProbability += score;
-      denominator++;
-    }
+      if (standings.streakCode === "W" && standings.streakCount >= 3) {
+        winProbability += 0.5;
+      } else if (standings.streakCode === "L") {
+        winProbability -= 0.3; // adjust this value as per your requirements
+      } else if (standings.streakCode === "OT") {
+        winProbability -= 0.1; // adjust this value as per your requirements
+      }
 
     winProbability /= denominator;
 
@@ -76,12 +81,10 @@ const Banner = ({ game }) => {
   }
 
   const rawAwayTeamWinProbability = calculateWinProbability(
-    awayTeamStanding,
-    game.awayTeam.score
+    awayTeamStanding
   );
   const rawHomeTeamWinProbability = calculateWinProbability(
-    homeTeamStanding,
-    game.homeTeam.score
+    homeTeamStanding
   );
 
   const totalRawWinProbability =
