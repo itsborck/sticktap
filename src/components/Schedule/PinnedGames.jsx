@@ -141,45 +141,51 @@ const PinnedGames = () => {
                 ) : null}
                 <div className="text-sm text-center">
                   {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
-                    <p>
-                      {game.periodDescriptor.number === 4 ? (
-                        `OT - ${
-                          favoriteDetails && favoriteDetails.clock
-                            ? favoriteDetails.clock.timeRemaining
-                            : null
-                        }`
-                      ) : game.periodDescriptor.number === 5 ? (
-                        "SO"
-                      ) : favoriteDetails &&
-                        favoriteDetails.clock &&
-                        favoriteDetails.clock.inIntermission === true ? (
-                        game.periodDescriptor.number === 1 ? (
-                          <p>
-                            1st Intermission -{" "}
-                            {favoriteDetails.clock.timeRemaining}
-                          </p>
-                        ) : game.periodDescriptor.number === 2 ? (
-                          <p>
-                            2nd Intermission -{" "}
-                            {favoriteDetails.clock.timeRemaining}
-                          </p>
-                        ) : null
-                      ) : (
-                        `Period ${game.periodDescriptor.number} - ${
-                          favoriteDetails && favoriteDetails.clock
-                            ? favoriteDetails.clock.timeRemaining
-                            : null
-                        }`
-                      )}
-                    </p>
+                    <>
+                    <div className="p-2"/>
+                      <p>
+                        {game.periodDescriptor.number === 4 ? (
+                          `OT - ${
+                            favoriteDetails && favoriteDetails.clock
+                              ? favoriteDetails.clock.timeRemaining
+                              : null
+                          }`
+                        ) : game.periodDescriptor.number === 5 ? (
+                          "SO"
+                        ) : favoriteDetails &&
+                          favoriteDetails.clock &&
+                          favoriteDetails.clock.inIntermission === true ? (
+                          game.periodDescriptor.number === 1 ? (
+                            <p>
+                              1st Intermission -{" "}
+                              {favoriteDetails.clock.timeRemaining}
+                            </p>
+                          ) : game.periodDescriptor.number === 2 ? (
+                            <p>
+                              2nd Intermission -{" "}
+                              {favoriteDetails.clock.timeRemaining}
+                            </p>
+                          ) : null
+                        ) : (
+                          `Period ${game.periodDescriptor.number} - ${
+                            favoriteDetails && favoriteDetails.clock
+                              ? favoriteDetails.clock.timeRemaining
+                              : null
+                          }`
+                        )}
+                      </p>
+                    </>
                   ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
-                    <p>
-                      {game.gameOutcome.lastPeriodType === "OT"
-                        ? "Final/OT"
-                        : game.gameOutcome.lastPeriodType === "SO"
-                        ? "Final/SO"
-                        : "Final"}
-                    </p>
+                    <>
+                    <div className="p-2"/>
+                      <p>
+                        {game.gameOutcome.lastPeriodType === "OT"
+                          ? "Final/OT"
+                          : game.gameOutcome.lastPeriodType === "SO"
+                          ? "Final/SO"
+                          : "Final"}
+                      </p>
+                    </>
                   ) : (
                     <div className="text-xs">
                       <p>

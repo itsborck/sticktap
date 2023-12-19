@@ -57,10 +57,10 @@ const Dashboard = () => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    const MAX_FILE_SIZE = 2 * 1024 * 1024; // 2MB
+    const MAX_FILE_SIZE = 10 * 1024 * 1024; // 10MB
 
     if (file.size > MAX_FILE_SIZE) {
-      alert("File size exceeds the limit of 2MB");
+      alert("File size exceeds the limit of 10MB");
       return;
     }
 

@@ -1,5 +1,6 @@
 import axios from "axios";
-import { doc, setDoc } from "firebase/firestore";
+import { updateProfile } from "firebase/auth";
+import { doc, getDoc, setDoc, writeBatch } from "firebase/firestore";
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -12,6 +13,7 @@ const AccountSettings = ({
   photoURL,
 }) => {
   const [previewURL, setPreviewURL] = useState(photoURL);
+  const [username, setUsername] = useState("");
   const [teams, setTeams] = useState(null);
   const [selectedTeam, setSelectedTeam] = useState(null);
 
@@ -35,6 +37,30 @@ const AccountSettings = ({
 
     return () => clearInterval(interval);
   });
+
+  const handleUsernameChange = async () => {
+    const userRef = doc(db, "users", auth.currentUser.uid);
+    const usernameRef = doc(db, "usernames", username);
+
+    const usernameSnapshot = await getDoc(usernameRef);
+    if (usernameSnapshot.exists()) {
+      toast.error("Username already exists.");
+      return;
+    }
+
+    const batch = writeBatch(db);
+    batch.set(userRef, { username: username }, { merge: true });
+    batch.set(usernameRef, { uid: auth.currentUser.uid });
+
+    try {
+      await batch.commit();
+      await updateProfile(auth.currentUser, { displayName: username });
+      toast.success("Username updated!");
+    } catch (error) {
+      console.error("Error updating username:", error);
+      toast.error("Failed to update username.");
+    }
+  };
 
   const handleFileChangeWithPreview = (event) => {
     handleFileChange(event);
@@ -72,6 +98,9 @@ const AccountSettings = ({
         theme="colored"
       />
       <div className="flex flex-col items-center justify-center pt-10">
+        <h1 className="text-2xl font-bold text-left mr-5">
+          Change Profile Picture
+        </h1>
         {previewURL && (
           <img
             src={previewURL}
@@ -98,6 +127,21 @@ const AccountSettings = ({
           Remove Profile Picture
         </button>
         <br />
+        {/* <h1 className="text-2xl font-bold text-left mr-5">Update Username</h1>
+        <input
+          type="text"
+          value={username}
+          placeholder="New Username"
+          onChange={(e) => setUsername(e.target.value)}
+          className="w-1/2 px-3 py-2 text-sm border rounded shadow focus:outline-none focus:shadow-outline text-black"
+        />
+        <button
+          onClick={handleUsernameChange}
+          className="w-1/2 px-4 py-2 mt-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700 focus:outline-none focus:shadow-outline"
+        >
+          Update Username
+        </button>
+        <br /> */}
         <div className="flex justify-between items-center mb-4">
           <h1 className="text-2xl font-bold text-left mr-5">Favorite Team</h1>
           <button

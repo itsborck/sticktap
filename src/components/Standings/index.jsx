@@ -34,17 +34,6 @@ const Standings = () => {
     document.title = "Current Standings | StickTap";
   });
 
-  const sortStandings = () => {
-    switch (sortOption) {
-      case "Division":
-        return groupByDivision();
-      case "Conference":
-        return groupByConference();
-      default:
-        return groupByDivision();
-    }
-  };
-
   const groupByDivision = () => {
     const groupedStandings = {};
     standings.forEach((team) => {
