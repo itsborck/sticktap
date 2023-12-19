@@ -5,6 +5,7 @@ import GameDetails from "../GameDetails";
 import Navbar from "../Navbar";
 import GameCalendar from "./Calendar";
 import ScheduleDay from "./ScheduleDay";
+import PinnedGames from "./PinnedGames";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
@@ -52,6 +53,10 @@ const WeeklySchedule = () => {
           formattedDate={formattedDate}
           setFormattedDate={setFormattedDate}
         />
+        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="text-2xl sm:col-span-1 lg:col-span-3">Favorite</div>
+          <PinnedGames formattedDate={formattedDate} />
+        </div>
         {gamesToday.map((day) => (
           <ScheduleDay key={day.date} day={day} />
         ))}

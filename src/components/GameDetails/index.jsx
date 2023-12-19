@@ -54,20 +54,20 @@ const GameDetailsContainer = () => {
               game={gamecenter}
               convertUTCToLocalTime={convertUTCToLocalTime}
             />
-            <div className="flex flex-col sm:flex-row">
+            <div className="grid grid-cols-1 sm:grid-cols-3">
               <div>
                 <Scoring gameId={gameId} />
               </div>
               <div>
                 <ThreeStars gameId={gameId} />
               </div>
-              <div>
+              <div className="">
                 <Info
                   game={gamecenter}
                   convertUTCToLocalTime={convertUTCToLocalTime}
                 />
               </div>
-              <div>
+              <div className="lg:grid-cols-2">
                 <Shootout gameId={gameId} />
               </div>
             </div>

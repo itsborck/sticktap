@@ -1,5 +1,5 @@
 import { getAuth, updateProfile } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
+import { doc, onSnapshot, getFirestore } from "firebase/firestore";
 import {
   getDownloadURL,
   getStorage,
@@ -19,6 +19,7 @@ const Dashboard = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [providerData, setProviderData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [favoriteTeam, setFavoriteTeam] = useState(null);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -35,6 +36,15 @@ const Dashboard = () => {
         setEmail(user.email);
         setPhotoURL(user.photoURL);
         setProviderData(user.providerData);
+
+
+        const db = getFirestore();
+        const userRef = doc(db, "users", user.uid);
+        const unsubscribeFirestore = onSnapshot(userRef, (doc) => {
+          setFavoriteTeam(doc.data().favoriteTeam)
+        });
+
+        return unsubscribeFirestore;
       }
     });
 
@@ -107,6 +117,7 @@ const Dashboard = () => {
         <div>
           <h2 className="text-2xl text-white">Hello, {displayName}!</h2>
           <p className="text-gray-500">{email}</p>
+          {favoriteTeam && <p className="text-gray-300">Favorite Team: {favoriteTeam}</p>}
         </div>
         <div className="flex justify-end items-end">
           <button
