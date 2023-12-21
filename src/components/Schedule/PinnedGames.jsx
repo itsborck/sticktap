@@ -1,13 +1,15 @@
 import axios from "axios";
 import { getAuth } from "firebase/auth";
 import { doc, getFirestore, onSnapshot } from "firebase/firestore";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 
 const PinnedGames = () => {
   const [favoriteTeam, setFavoriteTeam] = useState(null);
   const [favoriteDetails, setFavoriteDetails] = useState({});
+  const [gameDetails, setGameDetails] = useState({});
   const [isUserSignedIn, setIsUserSignedIn] = useState(false);
+  const previousDetailsRef = useRef();
 
   function convertUTCToLocalTime(utcTime) {
     const date = new Date(utcTime);
@@ -31,7 +33,7 @@ const PinnedGames = () => {
     });
 
     return () => unsubscribe();
-  }, []); 
+  }, []);
 
   useEffect(() => {
     if (favoriteTeam) { // Only run if favoriteTeam is not null
@@ -43,15 +45,66 @@ const PinnedGames = () => {
                 `https://api-web.nhle.com/v1/club-schedule/${favoriteTeam}/week/now`
               )
           );
-          setFavoriteDetails(response.data);
+          const newDetails = response.data;
+  
+          // Only update the state if the new data is different
+          if (JSON.stringify(newDetails) !== JSON.stringify(previousDetailsRef.current)) {
+            setFavoriteDetails(newDetails);
+            previousDetailsRef.current = newDetails;
+          }
         } catch (error) {
           console.error("Error fetching game details: ", error);
         }
       };
   
       fetchFavoriteDetails();
+      const interval = setInterval(fetchFavoriteDetails, 15000);
+  
+      return () => clearInterval(interval);
     }
   }, [favoriteTeam]);
+
+  useEffect(() => {
+    let interval;
+
+    const fetchGameDetails = async (gameId) => {
+      try {
+        const response = await axios.get(
+          "https://corsmirror.onrender.com/v1/cors?url=" +
+            encodeURIComponent(
+              `https://api-web.nhle.com/v1/gamecenter/${gameId}/landing`
+            )
+        );
+        return [gameId, response.data];
+      } catch (error) {
+        console.error("Error fetching game details: ", error);
+      }
+    };
+
+    if (favoriteDetails && favoriteDetails.games) {
+      Promise.all(favoriteDetails.games.map((game) => fetchGameDetails(game.id)))
+        .then((details) => {
+          const newGameDetails = {};
+          details.forEach(([gameId, detail]) => {
+            newGameDetails[gameId] = detail;
+          });
+          setGameDetails(newGameDetails);
+        });
+
+      interval = setInterval(() => {
+        Promise.all(favoriteDetails.games.map((game) => fetchGameDetails(game.id)))
+          .then((details) => {
+            const newGameDetails = {};
+            details.forEach(([gameId, detail]) => {
+              newGameDetails[gameId] = detail;
+            });
+            setGameDetails(newGameDetails);
+          });
+      }, 15000);
+    }
+
+    return () => clearInterval(interval);
+  }, [favoriteDetails]);
 
   return (
     <>
@@ -146,30 +199,30 @@ const PinnedGames = () => {
                       <p>
                         {game.periodDescriptor.number === 4 ? (
                           `OT - ${
-                            favoriteDetails && favoriteDetails.clock
-                              ? favoriteDetails.clock.timeRemaining
+                            gameDetails[game.id] && gameDetails.clock[game.id]
+                              ? gameDetails[game.id].clock.timeRemaining
                               : null
                           }`
                         ) : game.periodDescriptor.number === 5 ? (
                           "SO"
-                        ) : favoriteDetails &&
-                          favoriteDetails.clock &&
-                          favoriteDetails.clock.inIntermission === true ? (
+                        ) : gameDetails[game.id] &&
+                          gameDetails[game.id].clock &&
+                          gameDetails[game.id].clock.inIntermission === true ? (
                           game.periodDescriptor.number === 1 ? (
                             <p>
                               1st Intermission -{" "}
-                              {favoriteDetails.clock.timeRemaining}
+                              {gameDetails[game.id].clock.timeRemaining}
                             </p>
                           ) : game.periodDescriptor.number === 2 ? (
                             <p>
                               2nd Intermission -{" "}
-                              {favoriteDetails.clock.timeRemaining}
+                              {gameDetails[game.id].clock.timeRemaining}
                             </p>
                           ) : null
                         ) : (
                           `Period ${game.periodDescriptor.number} - ${
-                            favoriteDetails && favoriteDetails.clock
-                              ? favoriteDetails.clock.timeRemaining
+                            gameDetails[game.id] && gameDetails[game.id].clock
+                              ? gameDetails[game.id].clock.timeRemaining
                               : null
                           }`
                         )}
@@ -199,6 +252,8 @@ const PinnedGames = () => {
           </div>
         </Link>
       ))
+      ) : favoriteTeam ? (
+        <p>No Upcoming Games</p>
       ) : (
         <p>{isUserSignedIn ? "No Favorite Team Selected. Pick Your Favorite Team in User Settings!" : "No Favorite Team Selected. Sign In to Pick Your Favorite Team!"}</p>
       )}
