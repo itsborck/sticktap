@@ -3,7 +3,21 @@
 @tailwind utilities;
 
 body {
-  background-color: rgb(31 41 55);
+  background-color: rgb(17 24 39);
   font-family: 'Poppins', sans-serif;
   overflow: overlay;
+}
+
+.slide-up {
+  transform: translateY(100%);
+  animation: slide-up 0.5s forwards var(--delay, 0s);
+}
+
+@keyframes slide-up {
+  0% {
+    transform: translateY(100%);
+  }
+  100% {
+    transform: translateY(0%);
+  }
 }

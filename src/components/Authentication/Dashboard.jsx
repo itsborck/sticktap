@@ -1,5 +1,5 @@
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, onSnapshot, getFirestore } from "firebase/firestore";
+import { doc, getFirestore, onSnapshot } from "firebase/firestore";
 import {
   getDownloadURL,
   getStorage,
@@ -37,11 +37,10 @@ const Dashboard = () => {
         setPhotoURL(user.photoURL);
         setProviderData(user.providerData);
 
-
         const db = getFirestore();
         const userRef = doc(db, "users", user.uid);
         const unsubscribeFirestore = onSnapshot(userRef, (doc) => {
-          setFavoriteTeam(doc.data().favoriteTeam)
+          setFavoriteTeam(doc.data().favoriteTeam);
         });
 
         return unsubscribeFirestore;
@@ -106,7 +105,7 @@ const Dashboard = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-700 shadow-md rounded-lg p-4">
+      <div className="bg-gray-700 shadow-md rounded-lg p-4 mx-4 my-4">
         <div>
           <img
             className="w-20 h-20 mb-2 rounded-full"
@@ -117,7 +116,9 @@ const Dashboard = () => {
         <div>
           <h2 className="text-2xl text-white">Hello, {displayName}!</h2>
           <p className="text-gray-500">{email}</p>
-          {favoriteTeam && <p className="text-gray-300">Favorite Team: {favoriteTeam}</p>}
+          {favoriteTeam && (
+            <p className="text-gray-300">Favorite Team: {favoriteTeam}</p>
+          )}
         </div>
         <div className="flex justify-end items-end">
           <button

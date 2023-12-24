@@ -30,8 +30,8 @@ const Shootout = ({ gameId }) => {
     return null;
   }
 
-  return (
-    <div className="bg-gray-800 p-6 rounded-lg shadow-lg text-white">
+  return shootout && shootout.length > 0 ? (
+    <div className="bg-gray-950 p-4 rounded-lg my-2 mx-2 shadow-lg text-white">
       {shootout.map((player) => (
         <div key={player.sequence} className="flex mb-4 last:mb-0 border-b">
           <img
@@ -55,7 +55,7 @@ const Shootout = ({ gameId }) => {
         </div>
       ))}
     </div>
-  );
+  ) : null;
 };
 
 export default Shootout;

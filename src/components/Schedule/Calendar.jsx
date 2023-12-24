@@ -42,7 +42,7 @@ const GameCalendar = ({ formattedDate, setFormattedDate }) => {
   };
 
   return (
-    <div className="flex justify-between text-white">
+    <div className="flex justify-between text-gray-200">
       <button onClick={previousDay} className="lg:ml-32 md:ml-16 sm:ml-8">
         <FaChevronLeft />
       </button>

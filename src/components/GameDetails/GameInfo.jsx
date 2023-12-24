@@ -1,6 +1,6 @@
 const Info = ({ game }) => {
   return (
-    <div className="text-white bg-gray-800 p-4 rounded-lg shadow-md">
+    <div className="text-white bg-gray-950 p-4 rounded-lg shadow-md my-2 mx-2">
       <div className="flex-col mt-2">
         <p>Networks</p>
         {game.tvBroadcasts.map((broadcast) => (

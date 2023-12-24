@@ -1,4 +1,9 @@
-import { getAuth, GoogleAuthProvider, signInWithPopup, getRedirectResult } from "firebase/auth";
+import {
+  GoogleAuthProvider,
+  getAuth,
+  getRedirectResult,
+  signInWithPopup,
+} from "firebase/auth";
 import { useEffect, useRef, useState } from "react";
 import {
   FaBars,
@@ -82,10 +87,10 @@ const Navbar = () => {
     <nav className="bg-blue-500 p-4">
       <div className="container mx-auto flex justify-between items-center">
         <a href="/">
-        <span className="text-white text-lg font-bold flex">
-          <img src="/logo_white.png" className="mr-2 w-8" />
-          StickTap
-        </span>
+          <span className="text-white text-lg font-bold flex">
+            <img src="/logo_white.png" className="mr-2 w-8" />
+            StickTap
+          </span>
         </a>
 
         {isMobile ? (

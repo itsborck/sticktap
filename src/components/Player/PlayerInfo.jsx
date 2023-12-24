@@ -54,15 +54,20 @@ const PlayerInfo = ({ playerId }) => {
       <img className="w-40 h-40 rounded-full" src={player.headshot} />
       <div>
         <p className="text-sm text-white">
-          <strong>Height: </strong> 
-          {convertInchesToFeet(player.heightInInches).feet}&apos; 
+          <strong>Height: </strong>
+          {convertInchesToFeet(player.heightInInches).feet}&apos;
           {convertInchesToFeet(player.heightInInches).inches}&quot;
         </p>
         <p className="text-sm text-white">
           <strong>Weight:</strong> {player.weightInPounds} lbs
         </p>
         <p className="text-sm text-white">
-          <strong>Born:</strong> {new Date(player.birthDate).toLocaleDateString('en-US', { day: 'numeric', month: 'long', year: 'numeric' })}
+          <strong>Born:</strong>{" "}
+          {new Date(player.birthDate).toLocaleDateString("en-US", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
         </p>
         <p className="text-sm text-white">
           <strong>Birthplace:</strong> {player.birthCity.default},

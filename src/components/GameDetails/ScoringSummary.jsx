@@ -26,8 +26,12 @@ const Scoring = ({ gameId }) => {
     return () => clearInterval(interval);
   }, [gameId]);
 
-  return (
-    <div className="w-lg sm:w-full mx-auto mt-4 p-4 rounded-lg shadow-md">
+  if (!goals) {
+    return null;
+  }
+
+  return goals && goals.length > 0 ? (
+    <div className="bg-gray-950 my-2 mx-2 p-4 rounded-lg shadow-md">
       {goals.map((period, index) => (
         <div key={index} className="mb-4">
           {period.period === 4 ? (
@@ -83,13 +87,13 @@ const Scoring = ({ gameId }) => {
                   </div>
                 ))}
             </div>
-          ) : (
+          ) : period.period !== 5 ? (
             <p className="text-xs">No goals in this period.</p>
-          )}
+          ) : null}
         </div>
       ))}
     </div>
-  );
+  ) : null;
 };
 
 export default Scoring;

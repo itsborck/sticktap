@@ -1,6 +1,6 @@
 import GameCard from "./GameCard";
 
-const ScheduleDay = ({ day }) => {
+const ScheduleDay = ({ day, index }) => {
   const liveGames = day.games.filter(
     (game) => game.gameState === "LIVE" || game.gameState === "CRIT"
   );
@@ -27,15 +27,20 @@ const ScheduleDay = ({ day }) => {
     <div key={day.date} className="mb-8">
       <div className="grid lg:pl-4 md:pl-4 md:pr-4 gap-4">
         {day.games.length === 0 ? (
-          <p>No games scheduled.</p>
+          <>
+            <p className="flex justify-center">No games scheduled.</p>
+            <div className="flex flex-col justify-center items-center">
+              <img src="/bedsy.png" className="w-64 rounded shadow-lg"></img>
+            </div>
+          </>
         ) : (
           <>
             <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
               {liveGames.length > 0 && (
                 <div className="text-2xl sm:col-span-1 lg:col-span-3">Live</div>
               )}
-              {liveGames.map((game) => (
-                <GameCard key={game.id} game={game} />
+              {liveGames.map((game, index) => (
+                <GameCard key={game.id} game={game} index={index} />
               ))}
             </div>
             <div className="grid sm:grid-col-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
@@ -45,7 +50,7 @@ const ScheduleDay = ({ day }) => {
                 </div>
               )}
               {futureGames.map((game) => (
-                <GameCard key={game.id} game={game} />
+                <GameCard key={game.id} game={game} index={index} />
               ))}
             </div>
             <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
@@ -55,7 +60,7 @@ const ScheduleDay = ({ day }) => {
                 </div>
               )}
               {finalGames.map((game) => (
-                <GameCard key={game.id} game={game} />
+                <GameCard key={game.id} game={game} index={index} />
               ))}
             </div>
           </>

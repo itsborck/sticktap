@@ -27,7 +27,7 @@ const ThreeStars = ({ gameId }) => {
   }, [gameId]);
 
   return stars && stars.length > 0 ? (
-    <div className="flex flex-col items-center justify-center">
+    <div className="bg-gray-950 p-4 rounded-lg shadow-md mx-2 my-2 flex flex-col">
       <h2 className="text-2xl font-bold mb-2">Three Stars</h2>
       {stars.map((star, index) => (
         <div

@@ -55,7 +55,7 @@ const PlayerHeader = ({ playerId }) => {
           </div>
         </span>
       </div>
-      <div style={{ zIndex: 1, position: 'relative' }}>
+      <div style={{ zIndex: 1, position: "relative" }}>
         <BackButton />
         <img
           className="flex w-full overflow-hidden object-cover object-top h-96"

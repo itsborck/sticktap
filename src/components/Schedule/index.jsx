@@ -1,12 +1,13 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Route, Routes } from "react-router-dom";
 import { FaStar } from "react-icons/fa6";
+import { Route, Routes } from "react-router-dom";
 import GameDetails from "../GameDetails";
 import Navbar from "../Navbar";
 import GameCalendar from "./Calendar";
-import ScheduleDay from "./ScheduleDay";
 import PinnedGames from "./PinnedGames";
+import ScheduleDay from "./ScheduleDay";
+import InfoBar from "./InfoBar";
 
 const WeeklySchedule = () => {
   const [gameWeek, setGameWeek] = useState([]);
@@ -49,17 +50,21 @@ const WeeklySchedule = () => {
   return (
     <>
       <Navbar />
-      <div className="bg-gray-800 text-white px-5" style={{}}>
+      <InfoBar />
+      <div className="text-white px-5">
         <GameCalendar
           formattedDate={formattedDate}
           setFormattedDate={setFormattedDate}
         />
-        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4">
-          <div className="flex text-2xl sm:col-span-1 lg:col-span-3"><FaStar className="mr-2 w-6"/> Favorite</div>
+        <div className="grid sm:grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-4">
+          <div className="flex text-2xl sm:col-span-1 lg:col-span-3">
+            <FaStar className="mr-2 w-6" />
+            Favorite
+          </div>
           <PinnedGames formattedDate={formattedDate} />
         </div>
         {gamesToday.map((day) => (
-          <ScheduleDay key={day.date} day={day} />
+          <ScheduleDay key={day.date} day={day} formattedDate={formattedDate} />
         ))}
         <Routes>
           <Route path="/game/:gameId" element={<GameDetails />} />

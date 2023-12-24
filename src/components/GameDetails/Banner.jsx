@@ -67,25 +67,21 @@ const Banner = ({ game }) => {
       streakCount +
       goalsForPctg;
 
-      if (standings.streakCode === "W" && standings.streakCount >= 3) {
-        winProbability += 0.5;
-      } else if (standings.streakCode === "L") {
-        winProbability -= 0.3; // adjust this value as per your requirements
-      } else if (standings.streakCode === "OT") {
-        winProbability -= 0.1; // adjust this value as per your requirements
-      }
+    if (standings.streakCode === "W" && standings.streakCount >= 3) {
+      winProbability += 0.5;
+    } else if (standings.streakCode === "L") {
+      winProbability -= 0.3; // adjust this value as per your requirements
+    } else if (standings.streakCode === "OT") {
+      winProbability -= 0.1; // adjust this value as per your requirements
+    }
 
     winProbability /= denominator;
 
     return winProbability;
   }
 
-  const rawAwayTeamWinProbability = calculateWinProbability(
-    awayTeamStanding
-  );
-  const rawHomeTeamWinProbability = calculateWinProbability(
-    homeTeamStanding
-  );
+  const rawAwayTeamWinProbability = calculateWinProbability(awayTeamStanding);
+  const rawHomeTeamWinProbability = calculateWinProbability(homeTeamStanding);
 
   const totalRawWinProbability =
     rawAwayTeamWinProbability + rawHomeTeamWinProbability;
@@ -118,8 +114,14 @@ const Banner = ({ game }) => {
           <div className="flex items-center">
             {!isMobile && awayTeamStanding && (
               <div className="mr-4">
-                <p className={awayTeamWinProbability > homeTeamWinProbability ? "text-green-500" : "text-red-500"}>
-                  Win Probability: {(awayTeamWinProbability * 100).toFixed()}%
+                <p
+                  className={
+                    awayTeamWinProbability > homeTeamWinProbability
+                      ? "text-green-500"
+                      : "text-red-500"
+                  }
+                >
+                  Win Probability: {(awayTeamWinProbability * 100).toFixed(1)}%
                 </p>
               </div>
             )}
@@ -130,9 +132,24 @@ const Banner = ({ game }) => {
                 className="w-24 h-24 ml-4"
               />
               {isMobile && awayTeamStanding && (
-                <p className={awayTeamWinProbability > homeTeamWinProbability ? "text-green-500" : "text-red-500"}>
-                  {(awayTeamWinProbability * 100).toFixed()}%
-                </p>
+                <>
+                  <p className="text-xs text-center">
+                    ({awayTeamStanding.wins}-{awayTeamStanding.losses}-
+                    {awayTeamStanding.otLosses})
+                  </p>
+                  <p className="text-xs text-center">
+                    {game.awayTeam.sog ? "SOG: " + game.awayTeam.sog : null}
+                  </p>
+                  <p
+                    className={
+                      awayTeamWinProbability > homeTeamWinProbability
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
+                    {(awayTeamWinProbability * 100).toFixed(1)}%
+                  </p>
+                </>
               )}
             </div>
             <div className="flex flex-col">
@@ -217,15 +234,37 @@ const Banner = ({ game }) => {
                   className="w-24 h-24 ml-4"
                 />
                 {isMobile && homeTeamStanding && (
-                  <p className={homeTeamWinProbability > awayTeamWinProbability ? "text-green-500" : "text-red-500"}>
-                    {(homeTeamWinProbability * 100).toFixed()}%
-                  </p>
-              )}
-            </div>
+                  <>
+                    <p className="text-xs text-center">
+                      ({homeTeamStanding.wins}-{homeTeamStanding.losses}-
+                      {homeTeamStanding.otLosses})
+                    </p>
+                    <p className="text-xs text-center">
+                      {game.homeTeam.sog ? "SOG: " + game.homeTeam.sog : null}
+                    </p>
+                    <p
+                      className={
+                        homeTeamWinProbability > awayTeamWinProbability
+                          ? "text-green-500"
+                          : "text-red-500"
+                      }
+                    >
+                      {(homeTeamWinProbability * 100).toFixed(1)}%
+                    </p>
+                  </>
+                )}
+              </div>
               {!isMobile && homeTeamStanding && (
                 <div className="ml-4">
-                  <p className={homeTeamWinProbability > awayTeamWinProbability ? "text-green-500" : "text-red-500"}>
-                    Win Probability: {(homeTeamWinProbability * 100).toFixed()}%
+                  <p
+                    className={
+                      homeTeamWinProbability > awayTeamWinProbability
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }
+                  >
+                    Win Probability: {(homeTeamWinProbability * 100).toFixed(1)}
+                    %
                   </p>
                 </div>
               )}

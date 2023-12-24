@@ -4,7 +4,7 @@ const Boxscore = ({ game }) => {
   }
 
   return (
-    <div className="text-white rounded-lg shadow-lg p-6 mx-4 overflow-auto">
+    <div className="bg-gray-950 text-white rounded-lg shadow-lg p-4 my-2 mx-2 overflow-auto">
       <h2 className="text-2xl font-bold mb-2">Boxscore</h2>
       <table className="min-w-full divide-y divide-gray-200">
         <thead>

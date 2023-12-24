@@ -152,7 +152,7 @@ const AccountSettings = ({
           </button>
         </div>
         {teams && (
-          <div className="grid lg:grid-cols-4 grid-cols-3 gap-4">
+          <div className="grid lg:grid-cols-4 grid-cols-3 gap-4 px-2">
             {teams
               .filter((team) =>
                 team.teams.find((subTeam) => subTeam.active === "Y")
