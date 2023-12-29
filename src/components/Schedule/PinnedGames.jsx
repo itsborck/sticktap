@@ -300,6 +300,7 @@ const PinnedGames = ({ formattedDate }) => {
                             </span>
                             {game.gameState === "FINAL" ||
                             game.gameState === "LIVE" ||
+                            game.gameState === "CRIT" ||
                             game.gameState === "OFF" ? (
                               <p className="text-xs">
                                 SOG:{" "}
@@ -362,6 +363,7 @@ const PinnedGames = ({ formattedDate }) => {
                             </span>
                             {game.gameState === "FINAL" ||
                             game.gameState === "LIVE" ||
+                            game.gameState === "CRIT" ||
                             game.gameState === "OFF" ? (
                               <p className="text-xs">
                                 SOG:{" "}
