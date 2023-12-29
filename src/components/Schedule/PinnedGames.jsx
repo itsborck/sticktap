@@ -248,14 +248,24 @@ const PinnedGames = ({ formattedDate }) => {
           }
 
           let awayTeamStanding = awayTeamStandings.find(
-            (standing) => standing && standing.teamAbbrev && standing.teamAbbrev.default === game.awayTeam.abbrev
+            (standing) =>
+              standing &&
+              standing.teamAbbrev &&
+              standing.teamAbbrev.default === game.awayTeam.abbrev
           );
           let homeTeamStanding = homeTeamStandings.find(
-            (standing) => standing && standing.teamAbbrev && standing.teamAbbrev.default === game.homeTeam.abbrev
+            (standing) =>
+              standing &&
+              standing.teamAbbrev &&
+              standing.teamAbbrev.default === game.homeTeam.abbrev
           );
 
           return (
-            <Link key={index} to={`/game/${game.id}`} className="text-gray-200 hover:text-white slide-up">
+            <Link
+              key={index}
+              to={`/game/${game.id}`}
+              className="text-gray-200 hover:text-white slide-up"
+            >
               <div
                 key={index}
                 className={`bg-gray-800 p-2 rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ${
@@ -289,6 +299,7 @@ const PinnedGames = ({ formattedDate }) => {
                               {awayTeamStanding.teamCommonName.default}
                             </span>
                             {game.gameState === "FINAL" ||
+                            game.gameState === "LIVE" ||
                             game.gameState === "OFF" ? (
                               <p className="text-xs">
                                 SOG:{" "}
@@ -350,6 +361,7 @@ const PinnedGames = ({ formattedDate }) => {
                               {homeTeamStanding.teamCommonName.default}
                             </span>
                             {game.gameState === "FINAL" ||
+                            game.gameState === "LIVE" ||
                             game.gameState === "OFF" ? (
                               <p className="text-xs">
                                 SOG:{" "}

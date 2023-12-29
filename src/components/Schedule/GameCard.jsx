@@ -148,7 +148,9 @@ const GameCard = ({ game, formattedDate }) => {
                     <span className="font-bold text-xl text-gray-200">
                       {awayTeamStanding.teamCommonName.default}
                     </span>
-                    {game.gameState === "FINAL" || game.gameState === "OFF" ? (
+                    {game.gameState === "FINAL" ||
+                    game.gameState === "LIVE" ||
+                    game.gameState === "OFF" ? (
                       <p className="text-xs">
                         SOG:{" "}
                         {gameDetails &&
@@ -199,7 +201,9 @@ const GameCard = ({ game, formattedDate }) => {
                     <span className="font-bold text-xl text-gray-200">
                       {homeTeamStanding.teamCommonName.default}
                     </span>
-                    {game.gameState === "FINAL" || game.gameState === "OFF" ? (
+                    {game.gameState === "FINAL" ||
+                    game.gameState === "LIVE" ||
+                    game.gameState === "OFF" ? (
                       <p className="text-xs">
                         SOG:{" "}
                         {gameDetails &&
