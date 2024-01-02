@@ -117,6 +117,11 @@ const GameCard = ({ game, formattedDate }) => {
       to={`/game/${game.id}`}
       className="text-gray-200 hover:text-white slide-up"
     >
+      {game.specialEvent && (
+        <div className="absolute bottom-0 right-0 text-white text-xs p-1">
+          {game.specialEvent.default}
+        </div>
+      )}
       <div
         className={`bg-gray-800 p-2 rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ${
           game.specialEvent
@@ -138,7 +143,7 @@ const GameCard = ({ game, formattedDate }) => {
           <div className="flex justify-between items-center w-full mb-4">
             <div className="flex items-center">
               <img
-                src={game.awayTeam.logo}
+                src={game.awayTeam.darkLogo}
                 alt={game.awayTeam.placeName.default}
                 className="w-16 mr-2"
               />
@@ -192,7 +197,7 @@ const GameCard = ({ game, formattedDate }) => {
           <div className="flex justify-between items-center w-full">
             <div className="flex items-center">
               <img
-                src={game.homeTeam.logo}
+                src={game.homeTeam.darkLogo}
                 alt={game.homeTeam.placeName.default}
                 className="w-16 mr-2"
               />
@@ -246,7 +251,7 @@ const GameCard = ({ game, formattedDate }) => {
         </div>
         <div className="text-md text-center">
           {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
-            <p>
+            <p className="pb-1">
               {game.periodDescriptor.number === 4 ? (
                 `OT - ${
                   gameDetails && gameDetails.clock
@@ -272,7 +277,7 @@ const GameCard = ({ game, formattedDate }) => {
               )}
             </p>
           ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
-            <p>
+            <p className="pb-1">
               {game.gameOutcome.lastPeriodType === "OT"
                 ? "Final/OT"
                 : game.gameOutcome.lastPeriodType === "SO"
@@ -281,7 +286,7 @@ const GameCard = ({ game, formattedDate }) => {
             </p>
           ) : (
             <div>
-              <p>{convertUTCToLocalTime(game.startTimeUTC)}</p>
+              <p className="pb-1">{convertUTCToLocalTime(game.startTimeUTC)}</p>
             </div>
           )}
         </div>

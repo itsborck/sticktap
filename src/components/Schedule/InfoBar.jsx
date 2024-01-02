@@ -23,7 +23,7 @@ const InfoBar = () => {
       <div className="flex-1 text-white text-center">
         <div className='flex justify-center items-center space-x-2'>
         <p>{infoText}</p>
-        <a href={infoLink} className='hover:underline'>{linkText}</a>
+        <a href={infoLink} target='_blank' rel='noreferrer' className='hover:underline'>{linkText}</a>
         </div>
       </div>
     </div>

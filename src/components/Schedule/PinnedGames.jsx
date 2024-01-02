@@ -266,6 +266,11 @@ const PinnedGames = ({ formattedDate }) => {
               to={`/game/${game.id}`}
               className="text-gray-200 hover:text-white slide-up"
             >
+              {game.specialEvent && (
+                <div className="absolute bottom-0 right-0 text-white text-xs p-1">
+                  {game.specialEvent.default}
+                </div>
+              )}
               <div
                 key={index}
                 className={`bg-gray-800 p-2 rounded-lg shadow-md hover:bg-gray-700 transition duration-300 ${
@@ -414,7 +419,7 @@ const PinnedGames = ({ formattedDate }) => {
                 </div>
                 <div className="text-md text-center">
                   {game.gameState === "LIVE" || game.gameState === "CRIT" ? (
-                    <p>
+                    <p className="pb-1">
                       {game.periodDescriptor.number === 4 ? (
                         `OT - ${
                           gameDetails[game.id] && gameDetails[game.id].clock
@@ -446,7 +451,7 @@ const PinnedGames = ({ formattedDate }) => {
                       )}
                     </p>
                   ) : game.gameState === "FINAL" || game.gameState === "OFF" ? (
-                    <p>
+                    <p className="pb-1">
                       {game.gameOutcome.lastPeriodType === "OT"
                         ? "Final/OT"
                         : game.gameOutcome.lastPeriodType === "SO"
@@ -455,7 +460,7 @@ const PinnedGames = ({ formattedDate }) => {
                     </p>
                   ) : (
                     <div>
-                      <p>
+                      <p className="pb-1">
                         {new Date(game.startTimeUTC).toLocaleString("default", {
                           month: "long",
                           day: "numeric",
