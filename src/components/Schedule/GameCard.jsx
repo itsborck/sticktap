@@ -114,7 +114,7 @@ const GameCard = ({ game, formattedDate }) => {
 
   return (
     <Link
-      to={`/game/${game.id}`}
+      // to={`/game/${game.id}`}
       className="text-gray-200 hover:text-white slide-up"
     >
       {game.specialEvent && (
