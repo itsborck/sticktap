@@ -56,9 +56,9 @@ const Scoring = ({ gameId }) => {
                         className="text-sm font-medium hover:underline"
                       >
                         <strong>
-                          {goal.firstName} {goal.lastName}
+                          {goal.firstName.default} {goal.lastName.default}
                         </strong>{" "}
-                        ({goal.teamAbbrev})
+                        ({goal.teamAbbrev.default})
                       </Link>
                       {goal.assists && goal.assists.length > 0 && (
                         <p className="text-xs text-gray-400">
@@ -68,7 +68,7 @@ const Scoring = ({ gameId }) => {
                               to={`/player/${assist.playerId}`}
                               className="hover:underline"
                             >
-                              {assist.lastName} ({assist.assistsToDate})
+                              {assist.lastName.default} ({assist.assistsToDate})
                               {assistIndex < goal.assists.length - 1
                                 ? ", "
                                 : ""}
