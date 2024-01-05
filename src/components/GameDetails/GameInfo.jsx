@@ -41,8 +41,8 @@ const Info = ({ game }) => {
           game.boxscore.gameInfo.referees.length > 0 && (
             <>
               <p>Referees</p>
-              {game.boxscore.gameInfo.referees.map((referee) => (
-                <span key={referee} className="text-s text-gray-400">
+              {game.boxscore.gameInfo.referees.map((referee, index) => (
+                <span key={index} className="text-s text-gray-400">
                   {referee.default} <br />
                 </span>
               ))}
@@ -53,8 +53,8 @@ const Info = ({ game }) => {
           game.boxscore.gameInfo.linesmen.length > 0 && (
             <>
               <p>Linesmen</p>
-              {game.boxscore.gameInfo.linesmen.map((linesmen) => (
-                <span key={linesmen} className="text-s text-gray-400">
+              {game.boxscore.gameInfo.linesmen.map((linesmen, index) => (
+                <span key={index} className="text-s text-gray-400">
                   {linesmen.default} <br />
                 </span>
               ))}

@@ -263,7 +263,7 @@ const PinnedGames = ({ formattedDate }) => {
           return (
             <Link
               key={index}
-              // to={`/game/${game.id}`}
+              to={`/game/${game.id}`}
               className="text-gray-200 hover:text-white slide-up"
             >
               {game.specialEvent && (
