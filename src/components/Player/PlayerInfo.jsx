@@ -49,6 +49,48 @@ const PlayerInfo = ({ playerId }) => {
     return { feet, inches: remainingInches };
   }
 
+  function createStatsTable(stats, title) {
+    const keysToShow = [
+      "gamesPlayed",
+      "goals",
+      "assists",
+      "points",
+      "plusMinus",
+    ];
+    const titlesToShow = {
+      gamesPlayed: "GP",
+      goals: "G",
+      assists: "A",
+      points: "P",
+      plusMinus: "+/-",
+    };
+    return (
+      <table className="w-full text-sm text-white mt-4 border-collapse">
+        <thead>
+          <tr>
+            <th colSpan={keysToShow.length} className="text-center pb-2">
+              {title}
+            </th>
+          </tr>
+          <tr>
+            {keysToShow.map((key) => (
+              <th className="border border-white px-4 py-2">
+                {titlesToShow[key]}
+              </th>
+            ))}
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            {keysToShow.map((key) => (
+              <td className="border border-white px-4 py-2">{stats[key]}</td>
+            ))}
+          </tr>
+        </tbody>
+      </table>
+    );
+  }
+
   return (
     <div className="flex items-center space-x-4 shadow-2xl">
       <img className="w-40 h-40 rounded-full" src={player.headshot} />
@@ -98,6 +140,15 @@ const PlayerInfo = ({ playerId }) => {
           </p>
         )}
       </div>
+      {/* <div>
+        {player.featuredStats &&
+          createStatsTable(
+            player.featuredStats.regularSeason.subSeason,
+            "This Season"
+          )}
+        {player.featuredStats &&
+          createStatsTable(player.featuredStats.regularSeason.career, "Career")}
+      </div> */}
     </div>
   );
 };

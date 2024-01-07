@@ -4,6 +4,7 @@ import {
   getRedirectResult,
   signInWithPopup,
 } from "firebase/auth";
+import { setDoc, doc, getDoc } from "firebase/firestore";
 import { useEffect, useRef, useState } from "react";
 import {
   FaBars,
@@ -15,12 +16,13 @@ import {
 } from "react-icons/fa6";
 import { useMediaQuery } from "react-responsive";
 import { Link } from "react-router-dom";
-import { auth } from "../Authentication";
+import { auth, db } from "../Authentication";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [balance, setBalance] = useState(0);
   const isMobile = useMediaQuery({ query: "(max-width: 768px)" });
   const dropdownRef = useRef(null);
 
@@ -49,10 +51,26 @@ const Navbar = () => {
   }, []);
 
   useEffect(() => {
-    const unsubscribe = getAuth().onAuthStateChanged((user) => {
+    const unsubscribe = getAuth().onAuthStateChanged(async (user) => {
       if (user) {
         setIsLoggedIn(true);
         setPhotoURL(user.photoURL);
+
+        const docRef = doc(db, "users", user.uid);
+        const docSnap = await getDoc(docRef);
+
+        let data = docSnap.data() || {};
+        let balance = data.balance || 1000;
+        let lastLoginDate = data.lastLoginDate ? new Date(data.lastLoginDate) : null;
+        let today = new Date();
+        today.setHours(0, 0, 0, 0); // remove time part
+
+        if (!lastLoginDate || lastLoginDate.getTime() < today.getTime()) {
+          balance += 100;
+          lastLoginDate = today;
+        }
+
+        await setDoc(docRef, { balance, lastLoginDate }, { merge: true });
       } else {
         setIsLoggedIn(false);
         setPhotoURL("");
@@ -61,6 +79,19 @@ const Navbar = () => {
 
     return () => unsubscribe();
   }, []);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      if (isLoggedIn) {
+        const docRef = doc(db, "users", auth.currentUser.uid);
+        const docSnap = await getDoc(docRef);
+    
+        setBalance(docSnap.data().balance);
+      }
+    };
+  
+    fetchBalance();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -124,17 +155,27 @@ const Navbar = () => {
                 </Link>
                 <div className="relative" ref={dropdownRef}>
                   {isLoggedIn ? (
-                    <div
-                      className="flex items-center cursor-pointer"
-                      onClick={toggleDropdown}
-                    >
-                      <img
-                        src={photoURL}
-                        alt="Profile"
-                        className="w-6 h-6 rounded-full mr-2"
-                      />
-                      <span className="text-white">Account</span>
-                    </div>
+                    <>
+                      <div
+                        className="flex items-center cursor-pointer"
+                        onClick={toggleDropdown}
+                      >
+                        <img
+                          src={photoURL}
+                          alt="Profile"
+                          className="w-6 h-6 rounded-full mr-2"
+                        />
+                        <span className="text-white">Account</span>
+                      </div>
+                      <div className="flex items-center mt-2">
+                        <img
+                          src="/stickbuck.png"
+                          alt="StickBuck"
+                          className="w-6 h-6"
+                        />
+                        <span className="text-white">{balance}</span>
+                      </div>
+                    </>
                   ) : (
                     <button
                       onClick={toggleDropdown}
@@ -194,26 +235,36 @@ const Navbar = () => {
             <Link to="/player" className="text-white flex">
               <FaPeopleGroup className="mr-2" /> Players
             </Link>
-            <div className="relative" ref={dropdownRef}>
+            <div className="relative flex flex-row" ref={dropdownRef}>
               {isLoggedIn ? (
-                <div
-                  className="flex items-center cursor-pointer"
-                  onClick={toggleDropdown}
-                >
-                  <img
-                    src={photoURL}
-                    alt="Profile"
-                    className="w-6 h-6 rounded-full mr-2"
-                  />
-                  <span className="text-white">Account</span>
-                </div>
+                <>
+                  <div
+                    className="flex items-center cursor-pointer"
+                    onClick={toggleDropdown}
+                  >
+                    <img
+                      src={photoURL}
+                      alt="Profile"
+                      className="w-6 h-6 rounded-full mr-2"
+                    />
+                    <span className="text-white">Account</span>
+                  </div>
+                  <div className="flex items-center">
+                    <img
+                      src="/stickbuck.png"
+                      alt="StickBuck"
+                      className="w-6 h-6 ml-2"
+                    />
+                    <span className="text-white">{balance}</span>
+                  </div>
+                </>
               ) : (
                 <button onClick={toggleDropdown} className="text-white flex">
                   <FaUser className="mr-2" /> Account
                 </button>
               )}
               {isDropdownOpen && (
-                <div className="absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+                <div className="absolute right-0 mt-8 z-10 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
                   <div
                     className="py-1"
                     role="menu"

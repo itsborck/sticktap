@@ -293,7 +293,7 @@ const PinnedGames = ({ formattedDate }) => {
                   <div className="flex justify-between items-center w-full mb-4">
                     <div className="flex items-center">
                       <img
-                        src={game.awayTeam.logo}
+                        src={game.awayTeam.darkLogo}
                         alt={game.awayTeam.placeName.default}
                         className="w-16 mr-2"
                       />
@@ -356,7 +356,7 @@ const PinnedGames = ({ formattedDate }) => {
                   <div className="flex justify-between items-center w-full">
                     <div className="flex items-center">
                       <img
-                        src={game.homeTeam.logo}
+                        src={game.homeTeam.darkLogo}
                         alt={game.homeTeam.placeName.default}
                         className="w-16 mr-2"
                       />

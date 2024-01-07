@@ -185,6 +185,7 @@ const GameCard = ({ game, formattedDate }) => {
                   {(awayTeamWinProbability * 100).toFixed(1)}%
                 </span>
               )
+              
             ) : game.gameState === "LIVE" ||
               game.gameState === "CRIT" ||
               game.gameState === "FINAL" ||

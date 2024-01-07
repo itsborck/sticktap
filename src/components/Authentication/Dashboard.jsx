@@ -1,5 +1,5 @@
 import { getAuth, updateProfile } from "firebase/auth";
-import { doc, getFirestore, onSnapshot } from "firebase/firestore";
+import { doc, setDoc, getFirestore, onSnapshot } from "firebase/firestore";
 import {
   getDownloadURL,
   getStorage,
@@ -11,6 +11,7 @@ import { FaUserGear, FaX } from "react-icons/fa6";
 import Modal from "react-modal";
 import Navbar from "../Navbar";
 import AccountSettings from "./AccountSettings";
+import FriendList from "./FriendList";
 
 const Dashboard = () => {
   const [displayName, setDisplayName] = useState("");
@@ -38,8 +39,10 @@ const Dashboard = () => {
         setProviderData(user.providerData);
 
         const db = getFirestore();
-        const userRef = doc(db, "users", user.uid);
-        const unsubscribeFirestore = onSnapshot(userRef, (doc) => {
+        const userDocRef = doc(db, "users", user.uid);
+        setDoc(userDocRef, { displayName: user.displayName }, { merge: true });
+
+        const unsubscribeFirestore = onSnapshot(userDocRef, (doc) => {
           setFavoriteTeam(doc.data().favoriteTeam);
         });
 
@@ -148,6 +151,7 @@ const Dashboard = () => {
             />
           </Modal>
         </div>
+        <FriendList />
       </div>
     </>
   );
